@@ -1,0 +1,8 @@
+% Copyright © 2010 Jonathan Rascher.
+
+\newcommand{\contactemail}{<\href{mailto:jon@bcat.name}{jon@bcat.name}>}
+\newcommand{\contactphone}{+1 XXX XXX XXXX}
+\newcommand{\contactaddressone}{XX XXX XXX}
+\newcommand{\contactaddresstwo}{XXXXX, XX XXXXX-XXXX}
+
+\input{core}

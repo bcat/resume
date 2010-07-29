@@ -1,0 +1,119 @@
+% Copyright © 2010 Jonathan Rascher.
+
+% Use a basic, minimal resume class.
+\documentclass{simplecv}
+
+% Set a nice font. See also <http://www.tug.dk/FontCatalogue/iwonal/>.
+\usepackage[T1]{fontenc}
+\usepackage[light,math]{iwona}
+
+% Set up PDF extras.
+\usepackage[pdftex]{hyperref}
+\hypersetup{pdftitle={Jonathan Rascher's Resume},
+            pdfauthor={Jonathan Rascher}}
+
+% Enable multiple column support.
+\usepackage{multicol}
+
+\begin{document}
+  % My contact information. I use custom commands instead of hardcoding these
+  % details so that I can generate two versions of my resume: one with personal
+  % included, and one with it omitted which is suitable for posting online.
+  \leftheader{
+    \contactemail \\
+    \contactphone
+  }
+
+  \rightheader{
+    \contactaddressone \\
+    \contactaddresstwo
+  }
+
+  % Print the resume masthead.
+  \title{Jonathan Rascher}
+  \maketitle
+
+  % The primary content of my resume follows.
+  \begin{topic}
+    \item[B.S.] Computer Science---North Central College.
+
+    \item[B.S.] Mathematics---North Central College.
+
+    \item[Minor] Interactive Media Studies---North Central College.
+
+    \item Anticipated graduation date: June 2012.
+
+    \item GPA: 4.0 on a 4.0 scale after 84.0 credit hours.
+  \end{topic}
+
+  \section{Academic Awards \& Distinctions}
+  \begin{topic}
+    \item[2010] Recipient of Mary Anice Seybold Prize in Mathematics.
+
+    Participant in Google FUSE summer undergraduate retreat.
+
+    Member of ACCA programming contest advanced team.
+
+    \item[2009] Recipient of Presidential Scholarship.
+
+    Recipient of Science Scholarship.
+
+    Recipient of Phi Theta Kappa Scholarship.
+
+    Entrant in William Lowell Putnam Mathematical Competition.
+
+    \item[Fall 2008--Spring 2010] Dean's List (North Central College).
+
+    \item[Fall 2007--Fall 2008] Dean's List (Elgin Community College).
+
+    \item Took first college courses as a high school sophomore through an early-admissions program at Elgin Community College.
+  \end{topic}
+
+  \newpage
+
+  \section{Programming \& Markup Languages}
+  \begin{multicols}{2}
+    \begin{itemize}
+      \item Adobe Flash
+      \item Assembly\ (x86\ and\ Z-machine)
+      \item Bourne shell
+      \item C/C++
+      \item C\#
+      \item CSS
+      \item F\#
+      \item HTML/XHTML
+      \item \LaTeX{}
+      \item Java
+      \item JavaScript
+      \item PHP
+      \item Python
+      \item Visual Basic (classic \& .NET)
+    \end{itemize}
+  \end{multicols}
+
+  \section{Relevant Concepts (from Coursework or Self-Learning)}
+  \begin{multicols}{2}
+    \begin{itemize}
+      \item Algorithms
+      \item Computer graphics in OpenGL
+      \item Computer system concepts
+      \item Data structures
+      \item Digital \& film photography
+      \item Discrete mathematics \& proofs
+      \item Linux administration
+      \item Robotics on Parallax Javelin Stamp
+      \item Single \& multivariate calculus
+      \item Web programming
+    \end{itemize}
+  \end{multicols}
+
+  \section{Work \& Volunteer Experience}
+  \begin{topic}
+    \item[June 2010--present] Co-op developer in DIS division---Argonne National Laboratory.
+    \item[September 2004--present] Education volunteer---Cosley Zoo.
+    \item[March 2010--June 2010] Computer Animation with Flash preceptor---North Central College.
+    \item[September 2009--March 2010] Web application developer---North Central College.
+    \item[Summer 2007, 2008] Food runner/Cashier---Kane Country Cougars.
+    \item[September 2003--August 2007] Teen volunteer---Bartlett Public Library.
+  \end{topic}
+\end{document}
