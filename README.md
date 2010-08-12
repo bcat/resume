@@ -10,4 +10,4 @@ necessary to enable me to keep two versions of my resume (one with my phone
 number and mailing address included, and one without these data) without posting
 too much private data to GitHub.
 
-[1]: http://github.com/downloads/bcat/resume/jonathan-rascher-resume-public.pdf
+[1]: http://bcat.name/jonathan-rascher-resume-public.pdf
