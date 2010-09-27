@@ -3,17 +3,20 @@
 % Use a basic, minimal resume class.
 \documentclass{simplecv}
 
-% Set a nice font. See also <http://www.tug.dk/FontCatalogue/iwonal/>.
-\usepackage[T1]{fontenc}
-\usepackage[light,math]{iwona}
-
-% Set up PDF extras.
-\usepackage[pdftex]{hyperref}
-\hypersetup{pdftitle={Jonathan Rascher's Resume},
-            pdfauthor={Jonathan Rascher}}
+% Set some nice fonts. You can download them here:
+% * <http://www.fontsquirrel.com/fonts/District-Thin>
+% * <http://www.fontsquirrel.com/fonts/PT-Sans>
+\usepackage{fontspec}
+\setmainfont[Mapping=tex-text]{District Thin}
+\setsansfont[Mapping=tex-text]{PT Sans}
 
 % Enable multiple column support.
 \usepackage{multicol}
+
+% Set up PDF extras.
+\usepackage{hyperref}
+\hypersetup{pdftitle={Jonathan Rascher's Resume},
+            pdfauthor={Jonathan Rascher}}
 
 \begin{document}
   % My contact information. I use custom commands instead of hardcoding these

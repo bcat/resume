@@ -8,7 +8,7 @@ clean:
 	rm -f *.aux *.log *.out *.pdf
 
 jonathan-rascher-resume.pdf: core.tex jonathan-rascher-resume.tex
-	pdflatex jonathan-rascher-resume.tex
+	xelatex jonathan-rascher-resume.tex
 
 jonathan-rascher-resume-public.pdf: core.tex jonathan-rascher-resume-public.tex
-	pdflatex jonathan-rascher-resume-public.tex
+	xelatex jonathan-rascher-resume-public.tex
