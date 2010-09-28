@@ -9,6 +9,8 @@ clean:
 
 jonathan-rascher-resume.pdf: core.tex jonathan-rascher-resume.tex
 	xelatex jonathan-rascher-resume.tex
+	xelatex jonathan-rascher-resume.tex
 
 jonathan-rascher-resume-public.pdf: core.tex jonathan-rascher-resume-public.tex
+	xelatex jonathan-rascher-resume-public.tex
 	xelatex jonathan-rascher-resume-public.tex
