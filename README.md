@@ -11,8 +11,8 @@ number and mailing address included, and one without these data) without posting
 too much private data to GitHub.
 
 Also, if such things interest you, the fonts used are the excellent
-[District Light][2] and members of the very nice [PT Sans][2] family.
+[Segan Light][2] and members of the very nice [PT Sans][2] family.
 
 [1]: http://bcat.name/jonathan-rascher-resume-public.pdf
-[2]: http://www.fontsquirrel.com/fonts/District-Thin
+[2]: http://www.dafont.com/segan.font
 [3]: http://www.fontsquirrel.com/fonts/PT-Sans
