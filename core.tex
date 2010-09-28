@@ -7,7 +7,7 @@
 % when the document being typeset consists on large blocks of flowing text. On a
 % resume, however, it looks rather too sparse. We fix that by shrinking the
 % margins a bit.
-\usepackage{fullpage}
+\usepackage[letterpaper,hmargin=0.9in,vcentering]{geometry}
 
 % Set some nice fonts. You can download them here:
 % * <http://www.fontsquirrel.com/fonts/District-Thin>
@@ -23,6 +23,9 @@
 \usepackage{hyperref}
 \hypersetup{pdftitle={Jonathan Rascher's Resume},
             pdfauthor={Jonathan Rascher}}
+
+% Widen the left topic column to accommodate long item labels.
+\renewcommand{\topicmargin}{0.33\columnwidth}
 
 \begin{document}
   % My contact information. I use custom commands instead of hardcoding these
@@ -44,28 +47,28 @@
 
   % The primary content of my resume follows.
   \begin{topic}
-    \item[B.S.] Computer Science -- North Central College.
+    \item[Bachelor of Science] Computer Science -- North Central College.
 
-    \item[B.S.] Mathematics -- North Central College.
+    \item[Bachelor of Science] Mathematics -- North Central College.
 
     \item[Minor] Interactive Media Studies -- North Central College.
 
-    \item Anticipated graduation date: June 2012.
+    \item Member of Alpha Lambda Delta freshman honor society.
 
     \item GPA: 4.0 on a 4.0 scale after 84.0 credit hours.
 
-    \item Member of Alpha Lambda Delta freshman honor society.
+    \item Anticipated graduation date: June 2012.
   \end{topic}
 
   \section{Academic Awards \& Distinctions}
   \begin{topic}
-    \item[2010] Recipient of Mary Anice Seybold Prize in Mathematics.
+    \item[Academic Year 2010] Recipient of Mary Anice Seybold Prize in Mathematics.
 
     Member of ACCA programming contest advanced team.
 
     Participant in Google FUSE summer undergraduate retreat.
 
-    \item[2009] Recipient of Presidential Scholarship.
+    \item[Academic Year 2009] Recipient of Presidential Scholarship.
 
     Recipient of Science Scholarship.
 
@@ -102,7 +105,7 @@
     \end{itemize}
   \end{multicols}
 
-  \section{Relevant Concepts (from Coursework or Self-Learning)}
+  \section{Relevant Concepts from Coursework \& Self-Learning}
   \begin{multicols}{2}
     \begin{itemize}
       \item Algorithms
@@ -120,11 +123,11 @@
 
   \section{Work \& Volunteer Experience}
   \begin{topic}
-    \item[September 2004--present] Education volunteer -- Cosley Zoo.
-    \item[June 2010--September 2010] Co-op developer in DIS division -- Argonne National Laboratory.
-    \item[March 2010--June 2010] Computer Animation with Flash preceptor -- North Central College.
-    \item[September 2009--March 2010] Web application developer -- North Central College.
+    \item[Sept. 2004--present] Education volunteer -- Cosley Zoo.
+    \item[June 2010--Sept. 2010] Co-op developer in DIS division -- Argonne National Laboratory.
+    \item[March 2010--June 2010] Preceptor: Computer Animation with Flash -- North Central College.
+    \item[Sept. 2009--March 2010] Web application developer -- North Central College.
     \item[Summer 2007, 2008] Food runner (2007), Cashier (2008) -- Kane Country Cougars.
-    \item[September 2003--August 2007] Teen volunteer -- Bartlett Public Library.
+    \item[Sept. 2003--Aug. 2007] Teen volunteer -- Bartlett Public Library.
   \end{topic}
 \end{document}
