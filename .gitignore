@@ -1,5 +1,6 @@
 *.aux
+*.fdb_latexmk
 *.log
 *.out
 *.pdf
-jonathan-rascher-resume.tex
+*.synctex.gz
