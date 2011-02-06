@@ -7,7 +7,7 @@
 % when the document being typeset consists on large blocks of flowing text. On a
 % resume, however, it looks rather too sparse. We fix that by shrinking the
 % margins a bit.
-\usepackage[letterpaper,hmargin=0.85in,vcentering]{geometry}
+\usepackage[letterpaper,hmargin=0.88in,vcentering]{geometry}
 
 % Set some nice fonts. You can download or purchase them here:
 % * <http://friedrichalthausen.de/?page_id=411>
@@ -16,12 +16,27 @@
 % XXX: XeTeX doesn't automatically find Vollkorn styles for some reason.
 % XXX: Kerning in Vollkorn makes apostrophes look really bad, so we turn it off.
 \usepackage{fontspec}
-\setmainfont[BoldFont={* Bold},
-             ItalicFont={* Italic},
-             BoldItalicFont={* Bold Italic},
+\setmainfont[BoldFont={*-Bold},
+             ItalicFont={*-Italic},
+             BoldItalicFont={*-BoldItalic},
              Kerning=Off,
-             Ligatures=TeX]{Vollkorn}
-\setsansfont[Ligatures=TeX]{Fertigo Pro}
+             Ligatures=TeX]
+            {Vollkorn}
+\newfontfamily\fertigopro[Ligatures=TeX]{Fertigo Pro}
+
+% Decrease (!) the default leading a tiny bit.
+\renewcommand{\baselinestretch}{0.95}
+
+% Tell the simplecv class about our cool new fonts.
+\headerfont{\fertigopro}
+\titlefont{\fertigopro\LARGE}
+\sectionfont{\fertigopro}
+\subsectionfont{\fertigopro}
+\topiclabelfont{\fertigopro\itshape}
+\topictitlefont{\fertigopro\itshape}
+
+% Widen the left topic column to accommodate long item labels.
+\renewcommand{\topicmargin}{0.345\columnwidth}
 
 % Enable multiple column support.
 \usepackage{multicol}
@@ -37,9 +52,6 @@
             pdfauthor={Jonathan Rascher},
             pdfstartview=FitH,
             pdfprintscaling=None}
-
-% Widen the left topic column to accommodate long item labels.
-\renewcommand{\topicmargin}{0.35\columnwidth}
 
 % Give our ampersands a little love.
 \newcommand{\amp}{\textit\&\xspace}
