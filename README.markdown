@@ -6,10 +6,12 @@ You probably don't want to build it yourself (just [download it][1]!), but if
 you really want to try, grab a copy of [Latexmk][2] and run `latexmk -pdf` from
 this directory.
 
-Also, if such things interest you, the fonts used are the excellent
-[Segan Light][3] and members of the very nice [PT Sans][4] family.
+Also, if such things interest you, the fonts used are members of the excellent
+[Vollkorn][3] and [Fertigo Pro][4] families. Note that while the Vollkorn fonts
+are free, as is Fertigo Pro Regular, Fertigo Pro Italic must be purchased from
+one of various online font stores linked to from the author's site.
 
 [1]: http://bcat.name/jonathan-rascher-resume.pdf
 [2]: http://www.phys.psu.edu/~collins/software/latexmk-jcc/versions.html
-[3]: http://www.dafont.com/segan.font
-[4]: http://www.fontsquirrel.com/fonts/PT-Sans
+[3]: http://friedrichalthausen.de/?page_id=411
+[4]: http://www.josbuivenga.demon.nl/fertigo.html

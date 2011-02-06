@@ -9,15 +9,25 @@
 % margins a bit.
 \usepackage[letterpaper,hmargin=1.0in,vcentering]{geometry}
 
-% Set some nice fonts. You can download them here:
-% * <http://www.dafont.com/segan.font>
-% * <http://www.fontsquirrel.com/fonts/PT-Sans>
+% Set some nice fonts. You can download or purchase them here:
+% * <http://friedrichalthausen.de/?page_id=411>
+% * <http://www.josbuivenga.demon.nl/fertigo.html>
+%
+% XXX: XeTeX doesn't automatically find Vollkorn styles for some reason.
+% XXX: Kerning in Vollkorn makes apostrophes look really bad, so we turn it off.
 \usepackage{fontspec}
-\setmainfont[Mapping=tex-text]{Segan Light}
-\setsansfont[Mapping=tex-text]{PT Sans}
+\setmainfont[BoldFont={* Bold},
+             ItalicFont={* Italic},
+             BoldItalicFont={* Bold Italic},
+             Kerning=Off,
+             Ligatures=TeX]{Vollkorn}
+\setsansfont[Ligatures=TeX]{Fertigo Pro}
 
 % Enable multiple column support.
 \usepackage{multicol}
+
+% Use xspace to automatically tweak spacing after macros.
+\usepackage{xspace}
 
 % Set up PDF extras.
 \usepackage[dvipsnames,usenames]{color}
@@ -29,7 +39,10 @@
             pdfprintscaling=None}
 
 % Widen the left topic column to accommodate long item labels.
-\renewcommand{\topicmargin}{0.33\columnwidth}
+\renewcommand{\topicmargin}{0.315\columnwidth}
+
+% Give our ampersands a little love.
+\newcommand{\amp}{\textit\&\xspace}
 
 \begin{document}
   % My contact information.
@@ -44,16 +57,16 @@
   }
 
   % Print the resume masthead.
-  \title{\addfontfeature{LetterSpace=2.2}Jonathan Rascher}
+  \title{\addfontfeature{LetterSpace=3.0}Jonathan Rascher}
   \maketitle
 
   % The primary content of my resume follows.
   \begin{topic}
-    \item[Bachelor of Science] Computer Science -- North Central College.
+    \item[Bachelor of Science] Computer Science---North Central College.
 
-    \item[Bachelor of Science] Mathematics -- North Central College.
+    \item[Bachelor of Science] Mathematics---North Central College.
 
-    \item[Minor] Interactive Media Studies -- North Central College.
+    \item[Minor] Interactive Media Studies---North Central College.
 
     \item Member of Alpha Lambda Delta freshman honor society.
 
@@ -62,7 +75,7 @@
     \item Anticipated graduation date: June 2012.
   \end{topic}
 
-  \section{Academic Awards \& Distinctions}
+  \section{Academic Awards \amp Distinctions}
   \begin{topic}
     \item[Academic Year 2010] Recipient of Mary Anice Seybold Prize in Mathematics.
 
@@ -87,11 +100,11 @@
 
   \newpage
 
-  \section{Programming \& Markup Languages}
+  \section{Programming \amp Markup Languages}
   \begin{multicols}{2}
     \begin{itemize}
       \item Adobe Flash
-      \item Assembly\ (x86\ and\ Z-machine)
+      \item Assembly (x86 and Z-machine)
       \item Bourne shell
       \item C/C++
       \item C\#
@@ -103,34 +116,34 @@
       \item JavaScript
       \item PHP
       \item Python
-      \item Visual Basic (classic \& .NET)
+      \item Visual Basic (classic \amp\ .NET)
     \end{itemize}
   \end{multicols}
 
-  \section{Relevant Concepts from Coursework \& Self-Learning}
+  \section{Relevant Concepts from Coursework \amp Self-Learning}
   \begin{multicols}{2}
     \begin{itemize}
       \item Algorithms
       \item Computer graphics in OpenGL
       \item Computer system concepts
       \item Data structures
-      \item Digital \& film photography
-      \item Discrete mathematics \& proofs
+      \item Digital \amp film photography
+      \item Discrete mathematics \amp proofs
       \item Linux administration
       \item Robotics on Parallax Javelin Stamp
-      \item Single \& multivariate calculus
+      \item Single \amp multivariate calculus
       \item Web programming
     \end{itemize}
   \end{multicols}
 
-  \section{Work \& Volunteer Experience}
+  \section{Work \amp Volunteer Experience}
   \begin{topic}
-    \item[Jan. 2011--Present] Preceptor: Computer Science II -- North Central College.
-    \item[June 2010--Sept. 2010] Co-op developer in DIS division -- Argonne National Laboratory.
-    \item[March 2010--June 2010] Preceptor: Computer Animation with Flash -- North Central College.
-    \item[Sept. 2009--March 2010] Web application developer -- North Central College.
-    \item[Sept. 2004--March 2009] Education volunteer -- Cosley Zoo.
-    \item[Summer 2007, 2008] Food runner (2007), Cashier (2008) -- Kane Country Cougars.
-    \item[Sept. 2003--Aug. 2007] Teen volunteer -- Bartlett Public Library.
+    \item[Jan. 2011--Present] Preceptor: Computer Science II---North Central College.
+    \item[June 2010--Sept. 2010] Co-op developer in DIS division---Argonne National Laboratory.
+    \item[March 2010--June 2010] Preceptor: Computer Animation with Flash---North Central College.
+    \item[Sept. 2009--March 2010] Web application developer---North Central College.
+    \item[Sept. 2004--March 2009] Education volunteer---Cosley Zoo.
+    \item[Summer 2007, 2008] Food runner (2007), Cashier (2008)---Kane Country Cougars.
+    \item[Sept. 2003--Aug. 2007] Teen volunteer---Bartlett Public Library.
   \end{topic}
 \end{document}
