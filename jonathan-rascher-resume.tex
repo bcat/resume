@@ -25,7 +25,7 @@
 \newfontfamily\fertigopro[Ligatures=TeX]{Fertigo Pro}
 
 % Decrease (!) the default leading a tiny bit.
-\renewcommand{\baselinestretch}{0.95}
+\renewcommand*\baselinestretch{0.95}
 
 % Tell the simplecv class about our cool new fonts.
 \headerfont{\fertigopro}
@@ -36,13 +36,10 @@
 \topictitlefont{\fertigopro\itshape}
 
 % Widen the left topic column to accommodate long item labels.
-\renewcommand{\topicmargin}{0.345\columnwidth}
+\renewcommand*\topicmargin{0.345\columnwidth}
 
 % Enable multiple column support.
 \usepackage{multicol}
-
-% Use xspace to automatically tweak spacing after macros.
-\usepackage{xspace}
 
 % Set up PDF extras.
 \usepackage[dvipsnames,usenames]{color}
@@ -54,27 +51,24 @@
             pdfprintscaling=None}
 
 % Give our ampersands a little love.
-\newcommand*{\amp}{{\fertigopro\itshape\&}\xspace}
+\newcommand*\amp{{\fertigopro\itshape\&}}
 
 \begin{document}
-  % My contact information.
-  \leftheader{
-    <\href{mailto:jon@bcat.name}{jon@bcat.name}> \\
-    +1 630 917 2228
-  }
-
-  \rightheader{
-    PO Box 135 \\
-    Wayne, IL 60184-0135
-  }
-
   % Print the resume masthead.
+  \leftheader{%
+    <\href{mailto:jon@bcat.name}{jon@bcat.name}> \\
+    +1 630 917 2228}
+
+  \rightheader{%
+    PO Box 135 \\
+    Wayne, IL 60184-0135}
+
   \title{\addfontfeature{LetterSpace=3.0}Jonathan Rascher}
   \maketitle
 
   % The primary content of my resume follows.
   \begin{topic}
-    \item[Bachelor of Science] Computer Science \amp Mathematics---North Central College.
+    \item[Bachelor of Science] Computer Science \amp\ Mathematics---North Central College.
 
     \item[Academic Minor] Interactive Media Studies---North Central College.
 
@@ -85,7 +79,7 @@
     \item Anticipated graduation date: June 2012.
   \end{topic}
 
-  \section{Academic Awards \amp Distinctions}
+  \section{Academic Awards \amp\ Distinctions}
   \begin{topic}
     \item[Academic Yr.\ 2009--10] Entrant in William Lowell Putnam Mathematical Competition.
 
@@ -105,16 +99,16 @@
 
     \item[Fall 2007--Fall 2008] Dean's List (Elgin Community College).
 
-    \item Took first college courses as a high school sophomore through an early-admissions program at Elgin Community College.
+    \item Took first college classes as a high school sophomore participating in an early-admissions program at Elgin Community College.
   \end{topic}
 
   \newpage
 
-  \section{Programming \amp Markup Languages}
+  \section{Programming \amp\ Markup Languages}
   \begin{multicols}{2}
     \begin{itemize}
       \item Adobe Flash
-      \item Assembly (x86 \amp Z-machine)
+      \item Assembly (x86 \amp\ Z-machine)
       \item Bourne shell
       \item C/C++
       \item C\#
@@ -126,27 +120,27 @@
       \item JavaScript
       \item PHP
       \item Python
-      \item Visual Basic (.NET \amp classic)
+      \item Visual Basic (.NET \amp\ classic)
     \end{itemize}
   \end{multicols}
 
-  \section{Relevant Concepts from Coursework \amp Self-Learning}
+  \section{Relevant Concepts from Coursework \amp\ Self-Learning}
   \begin{multicols}{2}
     \begin{itemize}
       \item Computer graphics in OpenGL
       \item Computer system concepts
-      \item Data structures \amp algorithms
-      \item Digital \amp film photography
-      \item Discrete mathematics \amp proofs
+      \item Data structures \amp\ algorithms
+      \item Digital \amp\ film photography
+      \item Discrete mathematics \amp\ proofs
       \item Linux administration
       \item Robotics on Parallax Javelin Stamp
-      \item Single \amp multivariate calculus
+      \item Single \amp\ multivariate calculus
       \item Undergraduate real analysis
       \item Web development
     \end{itemize}
   \end{multicols}
 
-  \section{Work \amp Volunteer Experience}
+  \section{Work \amp\ Volunteer Experience}
   \begin{topic}
     \item[Jan. 2011--March 2011] Preceptor: Computer Science II---North Central College.
     \item[June 2010--Sept. 2010] Co-op developer in DIS division---Argonne National Laboratory.
