@@ -14,15 +14,25 @@
 % * <http://www.exljbris.com/fertigo.html>
 %
 % XXX: XeTeX doesn't automatically find Vollkorn styles for some reason.
-% XXX: Kerning in Vollkorn makes apostrophes look really bad, so we turn it off.
 \usepackage{fontspec}
 \setmainfont[BoldFont={*-Bold},
              ItalicFont={*-Italic},
              BoldItalicFont={*-BoldItalic},
-             Kerning=Off,
              Ligatures=TeX]
             {Vollkorn}
 \newfontfamily\fertigopro[Ligatures=TeX]{Fertigo Pro}
+
+% XXX: Vollkorn has overly tight kerning between the letters `m` and `n` and
+%      the apostrophe/right single quote character. This makes the phrase
+%      "Dean's List" look awkward and unbalanced. We hack our way around this
+%      issue by manually kerning these pairs using XeTeX character classes.
+\XeTeXinterchartokenstate=1
+\newXeTeXintercharclass\ApostropheClass
+\newXeTeXintercharclass\ApostropheKernHackClass
+\XeTeXcharclass`\'=\ApostropheClass
+\XeTeXcharclass`\m=\ApostropheKernHackClass
+\XeTeXcharclass`\n=\ApostropheKernHackClass
+\XeTeXinterchartoks\ApostropheKernHackClass\ApostropheClass={\kern -0.7pt}
 
 % Decrease (!) the default leading a tiny bit.
 \renewcommand*\baselinestretch{0.95}
