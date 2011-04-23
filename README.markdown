@@ -14,4 +14,4 @@ one of various online font stores linked to from the author's site.
 [1]: http://bcat.name/jonathan-rascher-resume.pdf
 [2]: http://www.phys.psu.edu/~collins/software/latexmk-jcc/versions.html
 [3]: http://friedrichalthausen.de/?page_id=411
-[4]: http://www.josbuivenga.demon.nl/fertigo.html
+[4]: http://www.exljbris.com/fertigo.html
