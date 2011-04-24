@@ -3,6 +3,9 @@
 % Use a basic, minimal resume class, and boost the font size a tiny bit.
 \documentclass[11pt]{simplecv}
 
+% Enable easy access to useful e-TeX features.
+\usepackage{etoolbox}
+
 % TeX uses relatively large margins by default. This leads to very nice pages
 % when the document being typeset consists on large blocks of flowing text. On a
 % resume, however, it looks rather too sparse. We fix that by shrinking the
@@ -23,16 +26,25 @@
 \newfontfamily\fertigopro[Ligatures=TeX]{Fertigo Pro}
 
 % XXX: Vollkorn has overly tight kerning between the letters `m` and `n` and
-%      the apostrophe/right single quote character. This makes the phrase
+%      the apostrophe/right single quote character. This makes phrases like
 %      "Dean's List" look awkward and unbalanced. We hack our way around this
 %      issue by manually kerning these pairs using XeTeX character classes.
-\XeTeXinterchartokenstate=1
-\newXeTeXintercharclass\ApostropheClass
-\newXeTeXintercharclass\ApostropheKernHackClass
-\XeTeXcharclass`\'=\ApostropheClass
-\XeTeXcharclass`\m=\ApostropheKernHackClass
-\XeTeXcharclass`\n=\ApostropheKernHackClass
-\XeTeXinterchartoks\ApostropheKernHackClass\ApostropheClass={\kern -0.7pt}
+\makeatletter
+  \let\preamble@vollkornfamily\f@family
+
+  \XeTeXinterchartokenstate=1
+
+  \newXeTeXintercharclass\preamble@apostrophecc
+  \newXeTeXintercharclass\preamble@vollkornkernhackcc
+
+  \XeTeXcharclass`\'=\preamble@apostrophecc
+  \XeTeXcharclass`\m=\preamble@vollkornkernhackcc
+  \XeTeXcharclass`\n=\preamble@vollkornkernhackcc
+
+  \XeTeXinterchartoks\preamble@vollkornkernhackcc\preamble@apostrophecc={%
+    \ifdefstrequal{\f@family}{\preamble@vollkornfamily}{%
+      \kern -0.6pt}{}}
+\makeatother
 
 % Decrease (!) the default leading a tiny bit.
 \renewcommand*\baselinestretch{0.95}
