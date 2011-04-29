@@ -3,9 +3,6 @@
 % Use a basic, minimal resume class, and boost the font size a tiny bit.
 \documentclass[11pt]{simplecv}
 
-% Enable easy access to useful e-TeX features.
-\usepackage{etoolbox}
-
 % TeX uses relatively large margins by default. This leads to very nice pages
 % when the document being typeset consists on large blocks of flowing text. On a
 % resume, however, it looks rather too sparse. We fix that by shrinking the
@@ -17,13 +14,62 @@
 % * <http://www.exljbris.com/fertigo.html>
 %
 % XXX: XeTeX doesn't automatically find Vollkorn styles for some reason.
-\usepackage{fontspec}
+\usepackage{adforn,fontspec}
 \setmainfont[BoldFont={*-Bold},
              ItalicFont={*-Italic},
              BoldItalicFont={*-BoldItalic},
              Ligatures=TeX]
             {Vollkorn}
 \newfontfamily\fertigopro[Ligatures=TeX]{Fertigo Pro}
+
+% Customize the page footers to add the total page count (to inform the reader
+% if they lose a page) and add some neat ornaments.
+\usepackage{fancyhdr,lastpage}
+\pagestyle{fancy}
+\fancyhf{}
+\cfoot{%
+  \adfflatleafoutlineleft%
+  \hspace{0.5em}%
+  \thepage\ \textit{of\kern 0.75pt} \pageref*{LastPage}%
+  \hspace{0.5em}%
+  \adfflatleafoutlineright}
+\renewcommand*\headrulewidth{0pt}
+\renewcommand*\footrulewidth{0pt}
+
+% Load miscellaneous packages (e-TeX helpers, LaTeX fixes, and support for
+% multiple columns of text).
+\usepackage{etoolbox,fixltx2e,multicol}
+
+% Set up PDF extras.
+\usepackage[dvipsnames,usenames]{color}
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks,
+  linkcolor=RawSienna,
+  citecolor=RawSienna,
+  urlcolor=RawSienna,
+  pdfpagemode=UseNone,
+  pdftitle=Jonathan Rascher's Resume,
+  pdfauthor=Jonathan Rascher,
+  pdfstartview=FitH,
+  pdfprintscaling=None}
+
+% Tell the simplecv class about our cool fonts.
+\headerfont{\fertigopro}
+\titlefont{\fertigopro\LARGE}
+\sectionfont{\fertigopro}
+\subsectionfont{\fertigopro}
+\topiclabelfont{\fertigopro\itshape}
+\topictitlefont{\fertigopro\itshape}
+
+% Decrease (!) the default leading a tiny bit.
+\renewcommand*\baselinestretch{0.95}
+
+% Widen the left topic column to accommodate long item labels.
+\renewcommand*\topicmargin{0.345\columnwidth}
+
+% Give our ampersands a little love.
+\newcommand*\amp{{\fertigopro\itshape\&}}
 
 % XXX: Vollkorn has overly tight kerning between the letters `m` and `n` and
 %      the apostrophe/right single quote character. This makes phrases like
@@ -45,40 +91,6 @@
     \ifdefstrequal{\f@family}{\preamble@vollkornfamily}{%
       \kern -0.6pt}{}}
 \makeatother
-
-% Decrease (!) the default leading a tiny bit.
-\renewcommand*\baselinestretch{0.95}
-
-% Tell the simplecv class about our cool new fonts.
-\headerfont{\fertigopro}
-\titlefont{\fertigopro\LARGE}
-\sectionfont{\fertigopro}
-\subsectionfont{\fertigopro}
-\topiclabelfont{\fertigopro\itshape}
-\topictitlefont{\fertigopro\itshape}
-
-% Widen the left topic column to accommodate long item labels.
-\renewcommand*\topicmargin{0.345\columnwidth}
-
-% Enable multiple column support.
-\usepackage{multicol}
-
-% Set up PDF extras.
-\usepackage[dvipsnames,usenames]{color}
-\usepackage{hyperref}
-\hypersetup{
-  colorlinks,
-  linkcolor=RawSienna,
-  citecolor=RawSienna,
-  urlcolor=RawSienna,
-  pdfpagemode=UseNone,
-  pdftitle=Jonathan Rascher's Resume,
-  pdfauthor=Jonathan Rascher,
-  pdfstartview=FitH,
-  pdfprintscaling=None}
-
-% Give our ampersands a little love.
-\newcommand*\amp{{\fertigopro\itshape\&}}
 
 \begin{document}
   % Print the resume masthead.
