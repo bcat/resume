@@ -30,7 +30,7 @@
 \cfoot{%
   {\large\adfflatleafoutlineleft}%
   \hspace{0.5em}%
-  \thepage\ \textit{of\kern 0.2pt} \pageref*{LastPage}%
+  \thepage\ \textit{of\kern 0.01em} \pageref*{LastPage}%
   \hspace{0.5em}%
   {\large\adfflatleafoutlineright}}
 \renewcommand*\headrulewidth{0pt}
@@ -62,6 +62,17 @@
 \topiclabelfont{\fertigopro\itshape}
 \topictitlefont{\fertigopro\itshape}
 
+% Give our typography a little love.
+\newcommand*\amp{{\fertigopro\itshape\&}}
+\newcommand*\CPP{%
+  C\nolinebreak[4]\kern -0.05em%
+  \raisebox{0.12ex}{+\nolinebreak[4]\kern -0.08em+}}
+\newcommand*\CS{C\nolinebreak[4]\kern -0.05em\#}
+\newcommand*\FS{F\nolinebreak[4]\kern -0.05em\#}
+
+% Widen the left topic column to accommodate long item labels.
+\renewcommand*\topicmargin{0.345\columnwidth}
+
 % Tweak spacing between list items to make it tighter in general, but looser
 % than usual between "groups" of items, i.e., add some additional space before
 % items with label arguments.
@@ -69,17 +80,11 @@
 
 \makeatletter
   \pretocmd\@topic@item{%
-    \setlength\itemsep{6pt}%
+    \setlength\itemsep{6.5pt}%
     \if@noitemarg%
       \setlength\itemsep{0pt}%
     \fi}
 \makeatother
-
-% Widen the left topic column to accommodate long item labels.
-\renewcommand*\topicmargin{0.345\columnwidth}
-
-% Give our ampersands a little love.
-\newcommand*\amp{{\fertigopro\itshape\&}}
 
 % XXX: Vollkorn has overly tight kerning between the letters `m` and `n` and
 %      the apostrophe/right single quote character. This makes phrases like
@@ -99,7 +104,7 @@
 
   \XeTeXinterchartoks\preamble@vollkornkernhackcc\preamble@apostrophecc={%
     \ifdefstrequal{\f@family}{\preamble@vollkornfamily}{%
-      \kern -0.6pt}{}}
+      \kern -0.05em}{}}
 \makeatother
 
 \begin{document}
@@ -154,22 +159,23 @@
   \newpage
 
   \section{Programming \amp\ Markup Languages}
-  \begin{multicols}{2}
+  \begin{multicols}{3}
     \begin{itemize}
+      \item x86 Assembly
       \item Adobe Flash
-      \item Assembly (x86 \amp\ Z-machine)
       \item Bourne shell
-      \item C/C++
-      \item C\#
+      \item C/\CPP
+      \item \CS
       \item CSS
-      \item F\#
+      \item \FS
       \item HTML/XHTML
       \item \LaTeX
       \item Java
       \item JavaScript
       \item PHP
       \item Python
-      \item Visual Basic (.NET \amp\ classic)
+      \item Visual Basic .NET
+      \item Visual Basic Classic
     \end{itemize}
   \end{multicols}
 
