@@ -62,8 +62,18 @@
 \topiclabelfont{\fertigopro\itshape}
 \topictitlefont{\fertigopro\itshape}
 
-% Decrease (!) the default leading a tiny bit.
-\renewcommand*\baselinestretch{0.95}
+% Tweak spacing between list items to make it tighter in general, but looser
+% than usual between "groups" of items, i.e., add some additional space before
+% items with label arguments.
+\appto\itemize{\setlength\itemsep{1pt}}
+
+\makeatletter
+  \pretocmd\@topic@item{%
+    \setlength\itemsep{6pt}%
+    \if@noitemarg%
+      \setlength\itemsep{0pt}%
+    \fi}
+\makeatother
 
 % Widen the left topic column to accommodate long item labels.
 \renewcommand*\topicmargin{0.345\columnwidth}
@@ -102,7 +112,7 @@
     PO Box 135 \\
     Wayne, IL 60184-0135}
 
-  \title{\addfontfeature{LetterSpace=3.0}Jonathan Rascher}
+  \title{\addfontfeature{LetterSpace=2.6}Jonathan Rascher}
   \maketitle
 
   % The primary content of my resume follows.
@@ -111,7 +121,7 @@
 
     \item[Academic Minor] Interactive Media Studies---North Central College.
 
-    \item Member of Alpha Lambda Delta and Pi Mu Epsilon honor societies.
+    \item[] Member of Alpha Lambda Delta and Pi Mu Epsilon honor societies.
 
     \item Grade-point average 4.0/4.0 after 105 credit hours.
 
