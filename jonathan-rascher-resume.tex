@@ -64,11 +64,12 @@
 
 % Give our typography a little love.
 \newcommand*\amp{{\fertigopro\itshape\&}}
+\newcommand*\nbds[1][-]{\nobreakdashes#1\hspace{0pt}}
 \newcommand*\CPP{%
-  C\nolinebreak[4]\kern -0.05em%
-  \raisebox{0.12ex}{+\nolinebreak[4]\kern -0.08em+}}
-\newcommand*\CS{C\nolinebreak[4]\kern -0.05em\#}
-\newcommand*\FS{F\nolinebreak[4]\kern -0.05em\#}
+  C\nolinebreak\kern -0.05em%
+  \raisebox{0.12ex}{+\nolinebreak\kern -0.08em+}}
+\newcommand*\CS{C\nolinebreak\kern -0.05em\#}
+\newcommand*\FS{F\nolinebreak\kern -0.05em\#}
 
 % Widen the left topic column to accommodate long item labels.
 \renewcommand*\topicmargin{0.345\columnwidth}
@@ -198,7 +199,7 @@
   \section{Work \amp\ Volunteer Experience}
   \begin{topic}
     \item[Jan. 2011--March 2011] Preceptor: Computer Science II---North Central College.
-    \item[June 2010--Sept. 2010] Co-op developer in DIS division---Argonne National Laboratory.
+    \item[June 2010--Sept. 2010] Co\nbds op developer in DIS division---Argonne National Laboratory.
     \item[March 2010--June 2010] Preceptor: Computer Animation with Flash---North Central College.
     \item[Sept. 2009--March 2010] Web application developer---North Central College.
     \item[Sept. 2004--March 2009] Education volunteer---Cosley Zoo.
