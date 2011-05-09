@@ -65,7 +65,7 @@
 
 % Give our typography a little love.
 \newcommand*\amp{{\fertigopro\itshape\&}}
-\newcommand*\fracslash{\raisebox{-0.3ex}{/}\kern-0.1em}
+\newcommand*\fracslash{\kern-0.04em\raisebox{-0.3ex}{/}\kern-0.1em}
 \newcommand*\nbds[1][-]{\nobreakdashes#1\hspace{0pt}}
 \newcommand*\CPP{%
   C\nolinebreak\kern-0.05em%
@@ -79,15 +79,13 @@
 % Tweak spacing between list items to make it tighter in general, but looser
 % than usual between "groups" of items, i.e., add some additional space before
 % items with label arguments.
-\appto\itemize{\setlength\itemsep{1pt}}
+\appto\itemize{%
+  \setlength\parskip{0pt}%
+  \setlength\itemsep{5pt}}
 
-\makeatletter
-  \pretocmd\@topic@item{%
-    \setlength\itemsep{6.5pt}%
-    \if@noitemarg%
-      \setlength\itemsep{0pt}%
-    \fi}
-\makeatother
+\appto\topic{%
+  \setlength\parskip{3pt}%
+  \setlength\itemsep{8pt}}
 
 % XXX: Vollkorn has overly tight kerning between the letters `m` and `n` and
 %      the apostrophe/right single quote character. This makes phrases like
@@ -127,13 +125,13 @@
   \begin{topic}
     \item[Bachelor of Science] Computer Science \amp\ Mathematics---North Central College.
 
-    \item[Academic Minor] Interactive Media Studies---North Central College.
-
-    \item[] Member of Alpha Lambda Delta and Pi Mu Epsilon honor societies.
-
-    \item Grade-point average 4.0\fracslash 4.0 after 105 credit hours.
+    \item[Undergrad.\ Minor] Interactive Media Studies---North Central College.
 
     \item Anticipated graduation date: June 2012.
+
+    Grade-point average 4.0\fracslash 4.0 after 105 credit hours.
+
+    Member of Alpha Lambda Delta and Pi Mu Epsilon honor societies.
   \end{topic}
 
   \section{Academic Awards \amp\ Distinctions}
@@ -177,8 +175,8 @@
       \item JavaScript
       \item PHP
       \item Python
+      \item Visual Basic 6
       \item Visual Basic .NET
-      \item Visual Basic Classic
     \end{itemize}
   \end{multicols}
 
