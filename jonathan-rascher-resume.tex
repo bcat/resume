@@ -22,17 +22,26 @@
             {Vollkorn}
 \newfontfamily\fertigopro[Ligatures=TeX]{Fertigo Pro}
 
+% Tell the simplecv class about our cool fonts.
+\headerfont{\fertigopro}
+\titlefont{\fertigopro\LARGE}
+\sectionfont{\fertigopro\large}
+\subsectionfont{\fertigopro}
+\topiclabelfont{\fertigopro\itshape}
+\topictitlefont{\fertigopro\itshape}
+
 % Customize the page footers to add the total page count (to inform the reader
 % if they lose a page) and add some neat ornaments.
 \usepackage{fancyhdr,lastpage}
 \pagestyle{fancy}
 \fancyhf{}
 \cfoot{%
-  {\large\adfflatleafoutlineleft}%
+  \fertigopro\footnotesize%
+  {\normalsize\adfflatleafoutlineleft}%
   \hspace{0.5em}%
-  \thepage\ \textit{of\kern 0.01em} \pageref*{LastPage}%
+  \thepage\ of \pageref*{LastPage}%
   \hspace{0.5em}%
-  {\large\adfflatleafoutlineright}}
+  {\normalsize\adfflatleafoutlineright}}
 \renewcommand*\headrulewidth{0pt}
 \renewcommand*\footrulewidth{0pt}
 
@@ -54,22 +63,15 @@
   pdfstartview=FitH,
   pdfprintscaling=None}
 
-% Tell the simplecv class about our cool fonts.
-\headerfont{\fertigopro}
-\titlefont{\fertigopro\LARGE}
-\sectionfont{\fertigopro}
-\subsectionfont{\fertigopro}
-\topiclabelfont{\fertigopro\itshape}
-\topictitlefont{\fertigopro\itshape}
-
 % Give our typography a little love.
 \newcommand*\amp{{\fertigopro\itshape\&}}
+\newcommand*\fracslash{\raisebox{-0.3ex}{/}\kern-0.1em}
 \newcommand*\nbds[1][-]{\nobreakdashes#1\hspace{0pt}}
 \newcommand*\CPP{%
-  C\nolinebreak\kern -0.05em%
-  \raisebox{0.12ex}{+\nolinebreak\kern -0.08em+}}
-\newcommand*\CS{C\nolinebreak\kern -0.05em\#}
-\newcommand*\FS{F\nolinebreak\kern -0.05em\#}
+  C\nolinebreak\kern-0.05em%
+  \raisebox{0.12ex}{+\nolinebreak\kern-0.08em+}}
+\newcommand*\CS{C\nolinebreak\kern-0.05em\#}
+\newcommand*\FS{F\nolinebreak\kern-0.05em\#}
 
 % Widen the left topic column to accommodate long item labels.
 \renewcommand*\topicmargin{0.345\columnwidth}
@@ -105,7 +107,7 @@
 
   \XeTeXinterchartoks\preamble@vollkornkernhackcc\preamble@apostrophecc={%
     \ifdefstrequal{\f@family}{\preamble@vollkornfamily}{%
-      \kern -0.05em}{}}
+      \kern-0.05em}{}}
 \makeatother
 
 \begin{document}
@@ -129,7 +131,7 @@
 
     \item[] Member of Alpha Lambda Delta and Pi Mu Epsilon honor societies.
 
-    \item Grade-point average 4.0/4.0 after 105 credit hours.
+    \item Grade-point average 4.0\fracslash 4.0 after 105 credit hours.
 
     \item Anticipated graduation date: June 2012.
   \end{topic}
