@@ -156,10 +156,7 @@
 \let\@listI\@listi
 
 % Define formatting macros for topic lists.
-\newcommand*\bcatresume@topic@labelfmt{%
-  \small\scshape
-  \raise.125ex%
-}
+\newcommand*\bcatresume@topic@labelfmt{\small\scshape\raise.125ex}
 
 % Set up a list environment for rendering resume topics. Each list item
 % indicates a new topic, which may be given a descriptive name. Paragraphs
@@ -190,19 +187,9 @@
 }{\endlist}
 
 % Define macros to typeset ornaments in keyword lists.
-\newcommand*\bcatresume@key@left{%
-  \morn{26}%
-  \hspace{.9em}%
-}
-\newcommand*\bcatresume@key@mid{%
-  \hspace{.9em}%
-  \morn{29}%
-  \hspace{.9em}%
-}
-\newcommand*\bcatresume@key@right{%
-  \hspace{.9em}%
-  \morn{26}%
-}
+\newcommand*\bcatresume@key@left{\morn{26}\hspace{.9em}}
+\newcommand*\bcatresume@key@mid{\hspace{.9em}\morn{29}\hspace{.9em}}
+\newcommand*\bcatresume@key@right{\hspace{.9em}\morn{26}}
 
 % Set up an environment that typesets a list of keywords, separated by
 % delimiters, with automatic line wrapping and support for different delimiters
@@ -249,10 +236,7 @@
   \centering
   \item\relax
   \vspace{-\parsep}%
-}{%
-  \mbox{\bcatresume@key@right}%
-  \endlist
-}
+}{\mbox{\bcatresume@key@right}\endlist}
 
 % Define macros to set title contents.
 \newcommand*\name[1]{\gdef\bcatresume@name{#1}}
@@ -342,13 +326,7 @@
 }
 
 % Define a command to format school/work experience lists.
-\newcommand*\job[2]{%
-  #1%
-  \hspace{.358em}%
-  \morn{22}%
-  \hspace{.333em}%
-  \textit{#2}%
-}
+\newcommand*\job[2]{#1\hspace{.358em}\morn{22}\hspace{.333em}\textit{#2}}
 
 % Lower the slash and kern it more tightly to improve the appearance of
 % in-text fractions with old-style numerals.
