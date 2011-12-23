@@ -1,0 +1,373 @@
+% Copyright © 2010-11 Jonathan Rascher.
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesClass{bcatresume}[2011/12/23 Jonathan Rascher's custom resume class]
+
+% The body of the resume is set in Minion Pro, a rather small font. As such, we
+% choose to typeset the resume at 12pt instead of the default 10pt size. By
+% loading the standard LaTeX class option file here, we also get some nice
+% default list settings.
+\input{size12.clo}
+
+% Load general purpose packages: ``fixltx2e'' to correct deficiencies in the
+% default LaTeX format, and ``etoolbox'' to provide easy access to the enhanced
+% features of e-TeX.
+\RequirePackage{fixltx2e,etoolbox}
+
+% Enable additional graphics commands. (We need this for ``\reflectbox''.)
+\RequirePackage{graphicx}
+
+% LaTeX uses fairly large margins by default. This leads to very nice pages
+% when the document being typeset consists on large blocks of flowing text. On
+% a resume, however, it looks too sparse. We fix that by shrinking the margins.
+\RequirePackage[letterpaper,hmargin=0.9in,vmargin=1.4in]{geometry}
+
+% Enable multi-column typesetting, and make the default column gap wider.
+\RequirePackage{multicol}
+\setlength\columnsep{.275in}
+
+% Load the ``fontspec'' package to allow the use of OpenType fonts, the
+% ``microtype'' package to enable automatic microtypographic adjustments, and
+% the ``soul'' package to support letterspacing in LuaTeX.
+\RequirePackage{fontspec,microtype,soul}
+
+% Set up some nice fonts. You can download or purchase them here:
+%   * <http://new.myfonts.com/fonts/adobe/minion/>
+%   * <http://friedrichalthausen.de/?page_id=411>
+\setmainfont[Ligatures=TeX,Numbers=OldStyle]{Minion Pro}
+\newfontfamily\fancyfamily[Ligatures=TeX]{Fertigo Pro}
+
+% Define macros that print the Minion Pro ornament with the specified index.
+% The ``\nrom'' macro is a mirrored version of ``\morn'', which is useful for
+% placing asymmetric glyphs on both sides of some text.
+\newcommand*\bcatresume@ornament[1]{%
+  \rmfamily\addfontfeature{RawFeature={+ornm=#1}}%
+  •%
+}
+\newcommand*\morn[1]{\mbox{\bcatresume@ornament{#1}}}
+\newcommand*\nrom[1]{\reflectbox{\bcatresume@ornament{#1}}}
+
+% Record the Fertigo Pro family name so we can test the current font later on.
+\begingroup
+  \fancyfamily
+  \global\let\bcatresume@fancyfamily\f@family
+\endgroup
+
+% Enable custom headers and footers, and allow detection of the total number of
+% pages in the resume.
+\RequirePackage{fancyhdr,lastpage}
+
+% Set up page numbering and use our custom headers/footers.
+\pagenumbering{arabic}
+\pagestyle{fancy}
+
+% Customize the resume's header/footer style.
+\fancyhf{}
+\cfoot{%
+  \fancyfamily\footnotesize
+  {\normalsize\nrom{13}}%
+  \hspace{.5em}%
+  \thepage\ of \pageref*{LastPage}%
+  \hspace{.5em}%
+  {\normalsize\morn{13}}%
+}
+\renewcommand*\headrulewidth{\z@}
+\renewcommand*\footrulewidth{\z@}
+
+% Allow the use of colored text
+\RequirePackage[dvipsnames]{xcolor}
+
+% Enable various PDF enhancements. Note that the ``hyperref'' package redefines
+% a bunch of core LaTeX stuff; thus it should be loaded after all other class
+% processing is done.
+\AtEndOfClass{
+  \RequirePackage{hyperref}
+
+  % Set general PDF options. (Resume-specific metadata is not specified till
+  % the resume's title is typeset.)
+  \hypersetup{
+    colorlinks,
+    allcolors=RawSienna,
+    pdfpagemode=UseNone,
+    pdfstartview=FitH,
+    pdfprintscaling=None,
+  }
+}
+
+% Make overfull boxes really ugly and noticeable.
+\setlength\overfullrule{5\p@}
+
+% Restore some default settings from the ``article'' class.
+\setlength\lineskip{\p@}
+\normallineskip\lineskip
+\renewcommand*\baselinestretch{}
+
+\@lowpenalty 51
+\@medpenalty 151
+\@highpenalty 301
+
+% Make the default enumerate and itemize environments actually useful.
+% (The standard document classes do this for us, but we don't include a
+% standard class, so...)
+%
+% These have been taken from the ``article'' class and tweaked a bit.
+\setlength\leftmargini{2.5em}
+\setlength\leftmarginii{2.2em}
+\setlength\leftmarginiii{1.87em}
+\setlength\leftmarginiv{1.7em}
+\setlength\leftmarginv{1em}
+\setlength\leftmarginvi{1em}
+
+\@beginparpenalty-\@lowpenalty
+\@endparpenalty-\@lowpenalty
+\@itempenalty-\@lowpenalty
+
+\setlength\labelsep{.5em}
+\setlength\labelwidth{\dimexpr\leftmargini-\labelsep\relax}
+
+\renewcommand*\theenumi{\@arabic\c@enumi}
+\renewcommand*\theenumii{\@alph\c@enumii}
+\renewcommand*\theenumiii{\@roman\c@enumiii}
+\renewcommand*\theenumiv{\@Alph\c@enumiv}
+
+\newcommand*\labelenumi{\theenumi.}
+\newcommand*\labelenumii{(\theenumii)}
+\newcommand*\labelenumiii{\theenumiii.}
+\newcommand*\labelenumiv{\theenumiv.}
+
+\renewcommand*\p@enumii{\theenumi}
+\renewcommand*\p@enumiii{\theenumi(\theenumii)}
+\renewcommand*\p@enumiv{\p@enumiii\theenumiii}
+
+\newcommand*\labelitemi{\morn{29}}
+\newcommand*\labelitemii{\morn{26}}
+\newcommand*\labelitemiii{\morn{27}}
+\newcommand*\labelitemiv{\morn{0}}
+
+\newcommand*\bcatresume@enumitem@sep{\setlength\itemsep{\z@}}
+\appto\enumerate{\bcatresume@enumitem@sep}
+\appto\itemize{\bcatresume@enumitem@sep}
+
+% Set the default paragraph indent so that paragraphs line up with lists, and
+% widen the spacing between non-list paragraphs, lists, and list items slightly.
+\parindent\leftmargini
+\setlength\parskip{2\p@ \@plus \p@}
+\appto\@listi{\itemsep\glueexpr\itemsep+2\p@\relax}
+\let\@listI\@listi
+
+% Define formatting macros for topic lists.
+\newcommand*\bcatresume@topic@labelfmt{%
+  \small\scshape
+  \raise.125ex%
+}
+
+% Set up a list environment for rendering resume topics. Each list item
+% indicates a new topic, which may be given a descriptive name. Paragraphs
+% within the same topic are spaced much closer together than items in distinct
+% topics. This breaks the paragraphs into per-topic ``chunks'' for easy
+% reading.
+%
+% This environment is loosely based (in appearance and implementation) on the
+% environment of the same name in the ``simplecv'' class.
+\newcommand*\bcatresume@topic@label[1]{%
+  \begingroup
+    \bcatresume@topic@labelfmt
+    \hbox{#1}%
+  \endgroup
+  \hfil
+}
+
+\newenvironment{topic}{%
+  \list{}{%
+    \let\makelabel\bcatresume@topic@label
+    \addtolength\parsep{-.5\parsep}%
+    \addtolength\topsep{\parsep}%
+    \addtolength\itemsep{\parsep}%
+    \setlength\leftmargin{\dimexpr.275\columnwidth+\leftmargini\relax}%
+    \labelsep\columnsep
+    \setlength\labelwidth{\dimexpr\leftmargin-\leftmargini-\labelsep\relax}%
+  }%
+}{\endlist}
+
+% Define macros to typeset ornaments in keyword lists.
+\newcommand*\bcatresume@key@left{%
+  \morn{26}%
+  \hspace{.9em}%
+}
+\newcommand*\bcatresume@key@mid{%
+  \hspace{.9em}%
+  \morn{29}%
+  \hspace{.9em}%
+}
+\newcommand*\bcatresume@key@right{%
+  \hspace{.9em}%
+  \morn{26}%
+}
+
+% Set up an environment that typesets a list of keywords, separated by
+% delimiters, with automatic line wrapping and support for different delimiters
+% before the first keyword on a line, between keywords in a line, and after the
+% last keyword on a line.
+%
+% These keyword lists use TeX's discretionary hyphenation support internally,
+% and credit for this approach goes to the user Ant on the TeX StackExchange.
+% See Ant's original post here: <http://tex.stackexchange.com/a/35286/1301>.
+\newcommand*\bcatresume@key@nl{%
+  \bcatresume@key@right
+  \bcatresume@key@oldnl
+  \togglefalse{bcatresume@key@inline}%
+}
+
+\newcommand*\bcatresume@key@pre{%
+  \iftoggle{bcatresume@key@inline}{%
+    \discretionary{%
+      \mbox{\bcatresume@key@right}%
+    }{%
+      \mbox{\bcatresume@key@left}%
+    }{%
+      \mbox{\bcatresume@key@mid}%
+    }%
+  }{\mbox{\bcatresume@key@left}}%
+}
+
+\newcommand*\keyitem[1]{%
+  \bcatresume@key@pre
+  \toggletrue{bcatresume@key@inline}%
+  \mbox{#1}%
+  \ignorespaces
+}
+
+\newenvironment{keylist}{%
+  \newtoggle{bcatresume@key@inline}%
+  \let\bcatresume@key@oldnl\\
+  \let\\\bcatresume@key@nl
+  \list{}{%
+    \rightmargin\leftmargin
+    \setlength\labelwidth{\z@}%
+    \addtolength\baselineskip{\parsep}%
+  }%
+  \centering
+  \item\relax
+  \vspace{-\parsep}%
+}{%
+  \mbox{\bcatresume@key@right}%
+  \endlist
+}
+
+% Define macros to set title contents.
+\newcommand*\name[1]{\gdef\bcatresume@name{#1}}
+\newcommand*\email[1]{\gdef\bcatresume@email{#1}}
+\newcommand*\phone[1]{\gdef\bcatresume@phone{#1}}
+\newcommand*\addrone[1]{\gdef\bcatresume@addrone{#1}}
+\newcommand*\addrtwo[1]{\gdef\bcatresume@addrtwo{#1}}
+\newcommand*\addrlast[1]{\gdef\bcatresume@addrlast{#1}}
+
+% Define formatting commands for the left, middle, and right portions of the
+% resume title, respectively.
+\newcommand*\bcatresume@leftfmt{\small}
+\sodef\bcatresume@midfmt{\Large}{.3\p@}{\z@}{\z@}
+\newcommand*\bcatresume@rightfmt{\small}
+
+% Define a macro that typesets the resume's title.
+\newcommand*\maketitle{
+  % Set up PDF title and authorship information appropriately.
+  \hypersetup{
+    pdftitle=\bcatresume@name's Resume,
+    pdfauthor=\bcatresume@name,
+  }%
+  % Print out the title itself.
+  \begingroup
+    \setlength\parindent{\z@}%
+    \parskip\parindent
+    \fancyfamily
+    %
+    \begin{minipage}{.3\linewidth}
+      \raggedright
+      \begin{tabular}{@{\bcatresume@leftfmt} l}
+        \ifundef\bcatresume@email{}{%
+          <\href{mailto:\bcatresume@email}{\bcatresume@email}> \\
+        }%
+        \ifundef\bcatresume@phone{}{\bcatresume@phone \\}
+      \end{tabular}
+    \end{minipage}%
+    %
+    \begin{minipage}{.4\linewidth}
+      \centering\bcatresume@midfmt\bcatresume@name
+    \end{minipage}%
+    %
+    \begin{minipage}{.3\linewidth}
+      \raggedleft
+      \begin{tabular}{@{\bcatresume@rightfmt} l}
+        \ifundef\bcatresume@addrone{}{\bcatresume@addrone \\}%
+        \ifundef\bcatresume@addrtwo{}{\bcatresume@addrtwo \\}%
+        \ifundef\bcatresume@addrlast{}{\bcatresume@addrlast \\}%
+      \end{tabular}
+    \end{minipage}%
+  \endgroup
+  %
+  \bigskip\bigskip\bigskip
+  %
+  \@afterindentfalse\@afterheading\par
+}
+
+% Define sectioning commands. Resumes should be short and simple, so we don't
+% bother with more than a single sectioning level.
+\setcounter{secnumdepth}{0}
+\setcounter{tocdepth}{1}
+
+\newcounter{section}
+\renewcommand*\thesection{\@arabic\c@section}
+
+\newcommand\section{%
+  \@startsection{section}{1}{\z@}{-5.5\smallskipamount}{3\smallskipamount}{%
+    \fancyfamily
+  }%
+}
+
+% Define a macro that typesets a dash character (by default, a hyphen) while
+% prohibiting a line break at that point. The empty horizontal space is
+% necessary to permit normal hyphenation in the word following the dash.
+\newcommand*\nbds[1][-]{\nobreakdashes#1\hspace{\z@}}
+
+% Typeset Fertigo Pro's ampersand in italics for additional prettiness. (Don't
+% give the same treatment to Minion Pro, however. Minion's italic ampersand
+% looks too ornate in roman text.)
+\newcommand*\amp{%
+  \texorpdfstring{%
+    \begingroup
+      \ifdefstrequal{\f@family}{\bcatresume@fancyfamily}{\itshape}{}%
+      \&%
+    \endgroup
+  }{\&}%
+}
+
+% Define a command to format school/work experience lists.
+\newcommand*\job[2]{%
+  #1%
+  \hspace{.358em}%
+  \morn{22}%
+  \hspace{.333em}%
+  \textit{#2}%
+}
+
+% Lower the slash and kern it more tightly to improve the appearance of
+% in-text fractions with old-style numerals.
+\newcommand*\fracslash{\kern.01em\raisebox{-.23ex}{/}\kern-.05em}
+
+% Tweak the kerning of unusual programming language names.
+%
+% XXX: Use lining hash sign instead of ``\raisebox''?
+\newcommand*\CPP{%
+  C\nolinebreak\kern-.02em%
+  \raisebox{.17ex}{+\nolinebreak\kern-.1em+}%
+}
+\newcommand*\CS{C\nolinebreak\kern.032em\raisebox{.25ex}{\#}}
+\newcommand*\FS{F\nolinebreak\kern.028em\raisebox{.2453ex}{\#}}
+
+% Fix the LaTeX logo for Minion Pro.
+\robustify\LaTeX
+\patchcmd\LaTeX{\kern-.36em}{\kern-.29em}{}{}  % Kern between L and A
+\patchcmd\LaTeX{\kern-.15em}{\kern-.122em}{}{} % Kern between A and T
+\patchcmd\TeX{\kern-.1667em}{\kern-.15em}{}{}  % Kern between T and E
+\patchcmd\TeX{\lower.5ex}{\lower.3667ex}{}{}   % Vertical shift of E
+\patchcmd\TeX{\kern-.125em}{\kern-.09em}{}{}   % Kern between E and X

@@ -1,131 +1,19 @@
 % Copyright © 2010-11 Jonathan Rascher.
 
-% Use a basic, minimal resume class, and boost the font size a tiny bit.
-\documentclass[11pt]{simplecv}
-
-% TeX uses relatively large margins by default. This leads to very nice pages
-% when the document being typeset consists on large blocks of flowing text. On a
-% resume, however, it looks rather too sparse. We fix that by shrinking the
-% margins a bit.
-\usepackage[letterpaper,hmargin=1in,vcentering]{geometry}
-
-% Set some nice fonts. You can download or purchase them here:
-% * <http://friedrichalthausen.de/?page_id=411>
-% * <http://www.exljbris.com/fertigo.html>
-%
-% XXX: XeTeX doesn't automatically find Vollkorn styles for some reason.
-\usepackage{adforn,fontspec}
-\setmainfont[BoldFont={*-Bold},
-             ItalicFont={*-Italic},
-             BoldItalicFont={*-BoldItalic},
-             Ligatures=TeX]
-            {Vollkorn}
-\newfontfamily\fertigopro[Ligatures=TeX]{Fertigo Pro}
-
-% Tell the simplecv class about our cool fonts.
-\headerfont{\fertigopro}
-\titlefont{\fertigopro\LARGE}
-\sectionfont{\fertigopro\large}
-\subsectionfont{\fertigopro}
-\topiclabelfont{\fertigopro\itshape}
-\topictitlefont{\fertigopro\itshape}
-
-% Customize the page footers to add the total page count (to inform the reader
-% if they lose a page) and add some neat ornaments.
-\usepackage{fancyhdr,lastpage}
-\pagestyle{fancy}
-\fancyhf{}
-\cfoot{%
-  \fertigopro\footnotesize%
-  {\normalsize\adfflatleafoutlineleft}%
-  \hspace{0.5em}%
-  \thepage\ of \pageref*{LastPage}%
-  \hspace{0.5em}%
-  {\normalsize\adfflatleafoutlineright}}
-\renewcommand*\headrulewidth{0pt}
-\renewcommand*\footrulewidth{0pt}
-
-% Load miscellaneous packages (e-TeX helpers, LaTeX fixes, and support for
-% multiple columns of text).
-\usepackage{etoolbox,fixltx2e,multicol}
-
-% Set up PDF extras.
-\usepackage[dvipsnames,usenames]{color}
-\usepackage{hyperref}
-\hypersetup{
-  colorlinks,
-  linkcolor=RawSienna,
-  citecolor=RawSienna,
-  urlcolor=RawSienna,
-  pdfpagemode=UseNone,
-  pdftitle=Jonathan Rascher's Resume,
-  pdfauthor=Jonathan Rascher,
-  pdfstartview=FitH,
-  pdfprintscaling=None}
-
-% Give our typography a little love.
-\newcommand*\amp{{\fertigopro\itshape\&}}
-\newcommand*\fracslash{\kern-0.08em\raisebox{-0.3ex}{⁄}\kern-0.2em}
-\newcommand*\nbds[1][-]{\nobreakdashes#1\hspace{0pt}}
-\newcommand*\CPP{%
-  C\nolinebreak\kern-0.05em%
-  \raisebox{0.12ex}{+\nolinebreak\kern-0.08em+}}
-\newcommand*\CS{C\nolinebreak\kern-0.05em\#}
-\newcommand*\FS{F\nolinebreak\kern-0.05em\#}
-
-% Widen the left topic column to accommodate long item labels.
-\renewcommand*\topicmargin{0.345\columnwidth}
-
-% Tweak spacing between list items to make it tighter in general, but looser
-% than usual between "groups" of items, i.e., add some additional space before
-% items with label arguments.
-\appto\itemize{%
-  \setlength\parskip{0pt}%
-  \setlength\itemsep{5pt}}
-
-\appto\topic{%
-  \setlength\parskip{3pt}%
-  \setlength\itemsep{8pt}}
-
-% XXX: Vollkorn has overly tight kerning between the letters `m` and `n` and
-%      the apostrophe/right single quote character. This makes phrases like
-%      "Dean's List" look awkward and unbalanced. We hack our way around this
-%      issue by manually kerning these pairs using XeTeX character classes.
-\makeatletter
-  \let\preamble@vollkornfamily\f@family
-
-  \XeTeXinterchartokenstate=1
-
-  \newXeTeXintercharclass\preamble@apostrophecc
-  \newXeTeXintercharclass\preamble@vollkornkernhackcc
-
-  \XeTeXcharclass`\'=\preamble@apostrophecc
-  \XeTeXcharclass`\m=\preamble@vollkornkernhackcc
-  \XeTeXcharclass`\n=\preamble@vollkornkernhackcc
-
-  \XeTeXinterchartoks\preamble@vollkornkernhackcc\preamble@apostrophecc={%
-    \ifdefstrequal{\f@family}{\preamble@vollkornfamily}{%
-      \kern-0.025em}{}}
-\makeatother
+\documentclass{bcatresume}
 
 \begin{document}
-  % Print the resume masthead.
-  \leftheader{%
-    <\href{mailto:jon@bcat.name}{jon@bcat.name}> \\
-    +1 630 917 2228}
-
-  \rightheader{%
-    PO Box 135 \\
-    Wayne, IL 60184-0135}
-
-  \title{\addfontfeature{LetterSpace=2.5}Jonathan Rascher}
+  \name{Jonathan Rascher}
+  \email{jon@bcat.name}
+  \phone{+1 630 917 2228}
+  \addrone{PO Box 135}
+  \addrlast{Wayne, IL 60184-0135}
   \maketitle
 
-  % The primary content of my resume follows.
   \begin{topic}
-    \item[Bachelor of Science] Computer Science \amp\ Mathematics---North Central College.
+    \item[Bachelor of Science] \job{Computer Science \amp\ Mathematics}{North Central College}.
 
-    \item[Undergrad.\ Minor] Interactive Media Studies---North Central College.
+    \item[Undergrad.\ Minor] \job{Interactive Media Studies}{North Central College}.
 
     \item Anticipated graduation date: June 2012.
 
@@ -135,8 +23,9 @@
   \end{topic}
 
   \section{Academic Awards \amp\ Distinctions}
+
   \begin{topic}
-    \item[Academic Yr.\ 2009--10] Entrant in William Lowell Putnam Mathematical Competition.
+    \item[Academic Yrs.\ 2009--10] Entrant in William Lowell Putnam Mathematical Competition.
 
     Member of ACCA programming contest advanced team.
 
@@ -154,57 +43,60 @@
 
     \item[Fall 2007--Fall 2008] Dean's List (Elgin Community College).
 
-    \item Took first college classes as a high school sophomore participating in an early-admissions program at Elgin Community College.
+    \item Took first college courses as a high school sophomore through an early-admissions program at Elgin Community College.
   \end{topic}
+
+  \section{Programming \amp\ Markup Languages}
+
+  \begin{keylist}
+    \keyitem{x86 Assembly}
+    \keyitem{Adobe Flash}
+    \keyitem{Bourne shell}
+    \keyitem{\CPP}
+    \keyitem{\CS}
+    \keyitem{CSS}
+    \keyitem{\FS}
+    \keyitem{HTML/XHTML}
+    \keyitem{\LaTeX}
+    \keyitem{Java}
+    \keyitem{JavaScript}
+    \keyitem{PHP}
+    \keyitem{Python}
+    \keyitem{Visual Basic 6}
+    \keyitem{Visual Basic .NET}
+  \end{keylist}
 
   \newpage
 
-  \section{Programming \amp\ Markup Languages}
-  \begin{multicols}{3}
-    \begin{itemize}
-      \item x86 Assembly
-      \item Adobe Flash
-      \item Bourne shell
-      \item C/\CPP
-      \item \CS
-      \item CSS
-      \item \FS
-      \item HTML/XHTML
-      \item \LaTeX
-      \item Java
-      \item JavaScript
-      \item PHP
-      \item Python
-      \item Visual Basic 6
-      \item Visual Basic .NET
-    \end{itemize}
-  \end{multicols}
-
   \section{Relevant Concepts \amp\ Coursework}
+
   \begin{multicols}{2}
     \begin{itemize}
       \item Computer graphics in OpenGL
-      \item Computer \amp\ operating system concepts
+      \item Computer system concepts
       \item Data structures \amp\ algorithms
       \item Digital \amp\ film photography
       \item Discrete mathematics \amp\ proofs
-      \item Linux administration
+      \item Linux server administration
+      \item MySQL database programming
+      \item Operating systems theory
       \item Robotics on Parallax Javelin Stamp
       \item Single \amp\ multivariate calculus
-      \item Undergraduate analysis \amp\ algebra
-      \item Web development
+      \item Undergrad.\ analysis, algebra, \amp\ topology
+      \item Web application development
     \end{itemize}
   \end{multicols}
 
   \section{Work \amp\ Volunteer Experience}
+
   \begin{topic}
-    \item[June 2011--Sept.\ 2011] Software engineering intern---Google.
-    \item[Jan.\ 2011--March 2011] Preceptor: Computer Science II---North Central College.
-    \item[June 2010--Sept.\ 2010] Co\nbds op developer in DIS division---Argonne National Laboratory.
-    \item[March 2010--June 2010] Preceptor: Computer Anim.\ with Flash---North Central College.
-    \item[Sept.\ 2009--March 2010] Web application developer---North Central College.
-    \item[Sept.\ 2004--March 2009] Education volunteer---Cosley Zoo.
-    \item[Summer 2007, 2008] Food runner (2007), Cashier (2008)---Kane Country Cougars.
-    \item[Sept.\ 2003--Aug.\ 2007] Teen volunteer---Bartlett Public Library.
+    \item[June 2011--Sept.\ 2011] \job{Software engineering intern}{Google}.
+    \item[Jan.\ 2011--March 2011] \job{Preceptor: Computer Science II}{North Central College}.
+    \item[June 2010--Sept.\ 2010] \job{Co\nbds op developer in DIS division}{Argonne National Laboratory}.
+    \item[March 2010--June 2010] \job{Preceptor: Animation with Flash}{North Central College}.
+    \item[Sept.\ 2009--March 2010] \job{Web application developer}{North Central College}.
+    \item[Sept.\ 2004--March 2009] \job{Education volunteer}{Cosley Zoo}.
+    \item[Summer 2007, 2008] \job{Food runner (2007), Cashier (2008)}{Kane Country Cougars}.
+    \item[Sept.\ 2003--Aug.\ 2007] \job{Teen volunteer}{Bartlett Public Library}.
   \end{topic}
 \end{document}
