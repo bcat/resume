@@ -74,7 +74,7 @@
 \renewcommand*\headrulewidth{\z@}
 \renewcommand*\footrulewidth{\z@}
 
-% Allow the use of colored text
+% Allow the use of colored text.
 \RequirePackage[dvipsnames]{xcolor}
 
 % Enable various PDF enhancements. Note that the ``hyperref'' package redefines
