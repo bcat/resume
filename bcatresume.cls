@@ -1,7 +1,7 @@
 % Copyright © 2010-11 Jonathan Rascher.
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{bcatresume}[2011/12/23 Jonathan Rascher's custom resume class]
+\ProvidesClass{bcatresume}[2012/01/01 Jonathan Rascher's custom resume class]
 
 % The body of the resume is set in Minion Pro, a rather small font. As such, we
 % choose to typeset the resume at 12pt instead of the default 10pt size. By
@@ -44,8 +44,8 @@
   \rmfamily\addfontfeature{RawFeature={+ornm=#1}}%
   •%
 }
-\newcommand*\morn[1]{\mbox{\bcatresume@ornament{#1}}}
-\newcommand*\nrom[1]{\reflectbox{\bcatresume@ornament{#1}}}
+\newrobustcmd*\morn[1]{\mbox{\bcatresume@ornament{#1}}}
+\newrobustcmd*\nrom[1]{\reflectbox{\bcatresume@ornament{#1}}}
 
 % Record the Fertigo Pro family name so we can test the current font later on.
 \begingroup
@@ -156,7 +156,7 @@
 \let\@listI\@listi
 
 % Define formatting macros for topic lists.
-\newcommand*\bcatresume@topic@labelfmt{\small\scshape\raise.125ex}
+\newcommand*\bcatresume@topic@labelfmt{\scshape\small\raise.125ex}
 
 % Set up a list environment for rendering resume topics. Each list item
 % indicates a new topic, which may be given a descriptive name. Paragraphs
@@ -167,10 +167,8 @@
 % This environment is loosely based (in appearance and implementation) on the
 % environment of the same name in the ``simplecv'' class.
 \newcommand*\bcatresume@topic@label[1]{%
-  \begingroup
-    \bcatresume@topic@labelfmt
-    \hbox{#1}%
-  \endgroup
+  \bcatresume@topic@labelfmt
+  \hbox{#1}%
   \hfil
 }
 
@@ -239,12 +237,12 @@
 }{\mbox{\bcatresume@key@right}\endlist}
 
 % Define macros to set title contents.
-\newcommand*\name[1]{\gdef\bcatresume@name{#1}}
-\newcommand*\email[1]{\gdef\bcatresume@email{#1}}
-\newcommand*\phone[1]{\gdef\bcatresume@phone{#1}}
-\newcommand*\addrone[1]{\gdef\bcatresume@addrone{#1}}
-\newcommand*\addrtwo[1]{\gdef\bcatresume@addrtwo{#1}}
-\newcommand*\addrlast[1]{\gdef\bcatresume@addrlast{#1}}
+\newrobustcmd*\name{\gdef\bcatresume@name}
+\newrobustcmd*\email{\gdef\bcatresume@email}
+\newrobustcmd*\phone{\gdef\bcatresume@phone}
+\newrobustcmd*\addrone{\gdef\bcatresume@addrone}
+\newrobustcmd*\addrtwo{\gdef\bcatresume@addrtwo}
+\newrobustcmd*\addrlast{\gdef\bcatresume@addrlast}
 
 % Define formatting commands for the left, middle, and right portions of the
 % resume title, respectively.
@@ -267,7 +265,7 @@
     %
     \begin{minipage}{.3\linewidth}
       \raggedright
-      \begin{tabular}{@{\bcatresume@leftfmt} l}
+      \begin{tabular}{@{\bcatresume@leftfmt}l}
         \ifundef\bcatresume@email{}{%
           <\href{mailto:\bcatresume@email}{\bcatresume@email}> \\
         }%
@@ -281,7 +279,7 @@
     %
     \begin{minipage}{.3\linewidth}
       \raggedleft
-      \begin{tabular}{@{\bcatresume@rightfmt} l}
+      \begin{tabular}{@{\bcatresume@rightfmt}l}
         \ifundef\bcatresume@addrone{}{\bcatresume@addrone \\}%
         \ifundef\bcatresume@addrtwo{}{\bcatresume@addrtwo \\}%
         \ifundef\bcatresume@addrlast{}{\bcatresume@addrlast \\}%
@@ -311,12 +309,12 @@
 % Define a macro that typesets a dash character (by default, a hyphen) while
 % prohibiting a line break at that point. The empty horizontal space is
 % necessary to permit normal hyphenation in the word following the dash.
-\newcommand*\nbds[1][-]{\nobreakdashes#1\hspace{\z@}}
+\newrobustcmd*\nbds[1][-]{\nobreakdashes#1\hspace{\z@}}
 
 % Typeset Fertigo Pro's ampersand in italics for additional prettiness. (Don't
 % give the same treatment to Minion Pro, however. Minion's italic ampersand
 % looks too ornate in roman text.)
-\newcommand*\amp{%
+\newrobustcmd*\amp{%
   \texorpdfstring{%
     \begingroup
       \ifdefstrequal{\f@family}{\bcatresume@fancyfamily}{\itshape}{}%
@@ -326,26 +324,44 @@
 }
 
 % Define a command to format school/work experience lists.
-\newcommand*\job[2]{#1\hspace{.358em}\morn{22}\hspace{.333em}\textit{#2}}
+\newrobustcmd*\job[2]{#1\hspace{.358em}\morn{22}\hspace{.333em}\textit{#2}}
 
 % Lower the slash and kern it more tightly to improve the appearance of
 % in-text fractions with old-style numerals.
-\newcommand*\fracslash{\kern.01em\raisebox{-.23ex}{/}\kern-.05em}
+\newrobustcmd*\fracslash{\kern.01em\raisebox{-.23ex}{/}\kern-.05em}
 
 % Tweak the kerning of unusual programming language names.
 %
 % XXX: Use lining hash sign instead of ``\raisebox''?
-\newcommand*\CPP{%
+\newrobustcmd*\CPP{%
   C\nolinebreak\kern-.02em%
   \raisebox{.17ex}{+\nolinebreak\kern-.1em+}%
 }
-\newcommand*\CS{C\nolinebreak\kern.032em\raisebox{.25ex}{\#}}
-\newcommand*\FS{F\nolinebreak\kern.028em\raisebox{.2453ex}{\#}}
+\newrobustcmd*\CS{C\nolinebreak\kern.032em\raisebox{.25ex}{\#}}
+\newrobustcmd*\FS{F\nolinebreak\kern.028em\raisebox{.2453ex}{\#}}
+
+% Define a wrapper for ``\patchcmd'' that properly handles macros defined using
+% ``\DeclareRobustCommand'' and that automatically throws an error if patching
+% fails. See here for inspiration: <http://tex.stackexchange.com/q/24245/1301>.
+\newrobustcmd*\bcatresume@patch[3]{%
+  \ifdefltxprotect{#1}{%
+    \let\bcatresume@patch@space\space
+  }{
+    \let\bcatresume@patch@space\@empty
+  }%
+  \edef\bcatresume@patch@cmd{%
+    \expandafter\noexpand\csname
+      \expandafter\@gobble\string#1\bcatresume@patch@space
+    \endcsname
+  }%
+  \expandafter\patchcmd\bcatresume@patch@cmd{#2}{#3}{}{%
+    \ClassError{bcatresume}{Couldn't patch ``\protect#1'' command.}{}%
+  }%
+}
 
 % Fix the LaTeX logo for Minion Pro.
-\robustify\LaTeX
-\patchcmd\LaTeX{\kern-.36em}{\kern-.29em}{}{}  % Kern between L and A
-\patchcmd\LaTeX{\kern-.15em}{\kern-.122em}{}{} % Kern between A and T
-\patchcmd\TeX{\kern-.1667em}{\kern-.15em}{}{}  % Kern between T and E
-\patchcmd\TeX{\lower.5ex}{\lower.3667ex}{}{}   % Vertical shift of E
-\patchcmd\TeX{\kern-.125em}{\kern-.09em}{}{}   % Kern between E and X
+\bcatresume@patch\LaTeX{\kern-.36em}{\kern-.29em}  % Kern between L and A
+\bcatresume@patch\LaTeX{\kern-.15em}{\kern-.122em} % Kern between A and T
+\bcatresume@patch\TeX{\kern-.1667em}{\kern-.15em}  % Kern between T and E
+\bcatresume@patch\TeX{\lower.5ex}{\lower.3667ex}   % Vertical shift of E
+\bcatresume@patch\TeX{\kern-.125em}{\kern-.09em}   % Kern between E and X
