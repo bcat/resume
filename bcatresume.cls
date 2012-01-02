@@ -317,11 +317,11 @@
 }
 
 % Define a command to format school/work experience lists.
-\newcommand*\job[2]{#1\hspace{.36em}\morn{22}\hspace{.325em}\textit{#2}}
+\newcommand*\job[2]{#1\hspace{.36em}\morn{22}\hspace{.32em}\textit{#2}}
 
-% Define a macro that typesets a dash character (by default, a hyphen) while
-% prohibiting a line break at that point. The empty horizontal space is
-% necessary to permit normal hyphenation in the word following the dash.
+% Define a macro that typesets a hyphen while prohibiting a line break at that
+% point. The empty horizontal space is necessary to permit normal hyphenation
+% in the word following the dash.
 \newcommand*\nbds{\texorpdfstring{\nobreakdashes-\hspace{\z@}}{-}}
 
 % Typeset Fertigo Pro's ampersand in italics for additional prettiness. (Don't
