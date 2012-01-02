@@ -354,7 +354,7 @@
 \newrobustcmd*\bcatresume@patch[3]{%
   \ifdefltxprotect#1{%
     \let\bcatresume@patch@space\space
-  }{
+  }{%
     \let\bcatresume@patch@space\@empty
   }%
   \edef\bcatresume@patch@cmd{%
