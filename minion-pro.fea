@@ -1,0 +1,9 @@
+# Copyright © 2010-11 Jonathan Rascher.
+
+languagesystem DFLT dflt;
+languagesystem latn dflt;
+
+feature kern {
+  pos \n \quoteright -38;
+  pos \quoteright \s -50;
+} kern;

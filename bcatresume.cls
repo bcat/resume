@@ -1,7 +1,7 @@
 % Copyright © 2010-11 Jonathan Rascher.
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{bcatresume}[2012/01/01 Jonathan Rascher's custom resume class]
+\ProvidesClass{bcatresume}[2012/01/02 Jonathan Rascher's custom resume class]
 
 % The body of the resume is set in Minion Pro, a rather small font. As such, we
 % choose to typeset the resume at 12pt instead of the default 10pt size. By
@@ -34,7 +34,11 @@
 % Set up some nice fonts. You can download or purchase them here:
 %   * <http://new.myfonts.com/fonts/adobe/minion/>
 %   * <http://friedrichalthausen.de/?page_id=411>
-\setmainfont[Ligatures=TeX,Numbers=OldStyle]{Minion Pro}
+\setmainfont[
+  Ligatures=TeX,
+  Numbers=OldStyle,
+  FeatureFile=minion-pro.fea,
+]{Minion Pro}
 \newfontfamily\fancyfamily[Ligatures=TeX]{Fertigo Pro}
 
 % Define macros that print the Minion Pro ornament with the specified index.
@@ -102,9 +106,9 @@
 \normallineskip\lineskip
 \renewcommand*\baselinestretch{}
 
-\@lowpenalty 51
-\@medpenalty 151
-\@highpenalty 301
+\@lowpenalty51
+\@medpenalty151
+\@highpenalty301
 
 % Make the default enumerate and itemize environments actually useful.
 % (The standard document classes do this for us, but we don't include a
@@ -252,6 +256,12 @@
 
 % Define a macro that typesets the resume's title.
 \newcommand*\maketitle{
+  % Make sure the resume's author specified their name.
+  \ifundef\bcatresume@name{%
+    \ClassError{bcatresume}{%
+      No ``\protect\name'' command before ``\protect\maketitle''%
+    }{}%
+  }{}%
   % Set up PDF title and authorship information appropriately.
   \hypersetup{
     pdftitle=\bcatresume@name's Resume,
@@ -307,7 +317,7 @@
 }
 
 % Define a command to format school/work experience lists.
-\newcommand*\job[2]{#1\hspace{.358em}\morn{22}\hspace{.333em}\textit{#2}}
+\newcommand*\job[2]{#1\hspace{.36em}\morn{22}\hspace{.325em}\textit{#2}}
 
 % Define a macro that typesets a dash character (by default, a hyphen) while
 % prohibiting a line break at that point. The empty horizontal space is
@@ -342,10 +352,10 @@
   }{C++}%
 }
 \newcommand*\CS{%
-  \texorpdfstring{C\nolinebreak\kern.032em\raisebox{.25ex}{\#}}{C\#}%
+  \texorpdfstring{C\nolinebreak\kern.032em\raisebox{.23ex}{\#}}{C\#}%
 }
 \newcommand*\FS{%
-  \texorpdfstring{F\nolinebreak\kern.028em\raisebox{.2453ex}{\#}}{F\#}%
+  \texorpdfstring{F\nolinebreak\kern.028em\raisebox{.22ex}{\#}}{F\#}%
 }
 
 % Define a wrapper for ``\patchcmd'' that properly handles macros defined using
@@ -363,13 +373,13 @@
     \endcsname
   }%
   \expandafter\patchcmd\bcatresume@patch@cmd{#2}{#3}{}{%
-    \ClassError{bcatresume}{Couldn't patch ``\protect#1'' command.}{}%
+    \ClassError{bcatresume}{Couldn't patch ``\protect#1'' command}{}%
   }%
 }
 
 % Fix the LaTeX logo for Minion Pro.
-\bcatresume@patch\LaTeX{\kern-.36em}{\kern-.29em}  % Kern between L and A
-\bcatresume@patch\LaTeX{\kern-.15em}{\kern-.122em} % Kern between A and T
+\bcatresume@patch\LaTeX{\kern-.36em}{\kern-.27em}  % Kern between L and A
+\bcatresume@patch\LaTeX{\kern-.15em}{\kern-.115em} % Kern between A and T
 \bcatresume@patch\TeX{\kern-.1667em}{\kern-.15em}  % Kern between T and E
 \bcatresume@patch\TeX{\lower.5ex}{\lower.3667ex}   % Vertical shift of E
 \bcatresume@patch\TeX{\kern-.125em}{\kern-.09em}   % Kern between E and X
