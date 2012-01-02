@@ -306,15 +306,18 @@
   }%
 }
 
+% Define a command to format school/work experience lists.
+\newcommand*\job[2]{#1\hspace{.358em}\morn{22}\hspace{.333em}\textit{#2}}
+
 % Define a macro that typesets a dash character (by default, a hyphen) while
 % prohibiting a line break at that point. The empty horizontal space is
 % necessary to permit normal hyphenation in the word following the dash.
-\newrobustcmd*\nbds[1][-]{\nobreakdashes#1\hspace{\z@}}
+\newcommand*\nbds{\texorpdfstring{\nobreakdashes-\hspace{\z@}}{-}}
 
 % Typeset Fertigo Pro's ampersand in italics for additional prettiness. (Don't
 % give the same treatment to Minion Pro, however. Minion's italic ampersand
 % looks too ornate in roman text.)
-\newrobustcmd*\amp{%
+\newcommand*\amp{%
   \texorpdfstring{%
     \begingroup
       \ifdefstrequal{\f@family}{\bcatresume@fancyfamily}{\itshape}{}%
@@ -323,28 +326,33 @@
   }{\&}%
 }
 
-% Define a command to format school/work experience lists.
-\newrobustcmd*\job[2]{#1\hspace{.358em}\morn{22}\hspace{.333em}\textit{#2}}
-
 % Lower the slash and kern it more tightly to improve the appearance of
 % in-text fractions with old-style numerals.
-\newrobustcmd*\fracslash{\kern.01em\raisebox{-.23ex}{/}\kern-.05em}
+\newcommand*\fracslash{%
+  \texorpdfstring{\kern.01em\raisebox{-.23ex}{/}\kern-.05em}{/}%
+}
 
 % Tweak the kerning of unusual programming language names.
 %
 % XXX: Use lining hash sign instead of ``\raisebox''?
-\newrobustcmd*\CPP{%
-  C\nolinebreak\kern-.02em%
-  \raisebox{.17ex}{+\nolinebreak\kern-.1em+}%
+\newcommand*\CPP{%
+  \texorpdfstring{%
+    C\nolinebreak\kern-.02em%
+    \raisebox{.17ex}{+\nolinebreak\kern-.1em+}%
+  }{C++}%
 }
-\newrobustcmd*\CS{C\nolinebreak\kern.032em\raisebox{.25ex}{\#}}
-\newrobustcmd*\FS{F\nolinebreak\kern.028em\raisebox{.2453ex}{\#}}
+\newcommand*\CS{%
+  \texorpdfstring{C\nolinebreak\kern.032em\raisebox{.25ex}{\#}}{C\#}%
+}
+\newcommand*\FS{%
+  \texorpdfstring{F\nolinebreak\kern.028em\raisebox{.2453ex}{\#}}{F\#}%
+}
 
 % Define a wrapper for ``\patchcmd'' that properly handles macros defined using
 % ``\DeclareRobustCommand'' and that automatically throws an error if patching
 % fails. See here for inspiration: <http://tex.stackexchange.com/q/24245/1301>.
 \newrobustcmd*\bcatresume@patch[3]{%
-  \ifdefltxprotect{#1}{%
+  \ifdefltxprotect#1{%
     \let\bcatresume@patch@space\space
   }{
     \let\bcatresume@patch@space\@empty
