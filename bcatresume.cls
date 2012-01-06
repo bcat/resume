@@ -1,7 +1,7 @@
 % Copyright © 2010-11 Jonathan Rascher.
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{bcatresume}[2012/01/02 Jonathan Rascher's custom resume class]
+\ProvidesClass{bcatresume}[2012/01/05 Jonathan Rascher's custom resume class]
 
 % The body of the resume is set in Minion Pro, a rather small font. As such, we
 % choose to typeset the resume at 12pt instead of the default 10pt size. By
@@ -24,7 +24,7 @@
 
 % Enable multi-column typesetting, and make the default column gap wider.
 \RequirePackage{multicol}
-\setlength\columnsep{.275in}
+\deflength\columnsep{.275in}
 
 % Load the ``fontspec'' package to allow the use of OpenType fonts, the
 % ``microtype'' package to enable automatic microtypographic adjustments, and
@@ -99,10 +99,10 @@
 }
 
 % Make overfull boxes really ugly and noticeable.
-\setlength\overfullrule{5\p@}
+\deflength\overfullrule{5\p@}
 
 % Restore some default settings from the ``article'' class.
-\setlength\lineskip{\p@}
+\deflength\lineskip{\p@}
 \normallineskip\lineskip
 \renewcommand*\baselinestretch{}
 
@@ -115,19 +115,19 @@
 % standard class, so...)
 %
 % These have been taken from the ``article'' class and tweaked a bit.
-\setlength\leftmargini{2.5em}
-\setlength\leftmarginii{2.2em}
-\setlength\leftmarginiii{1.87em}
-\setlength\leftmarginiv{1.7em}
-\setlength\leftmarginv{1em}
-\setlength\leftmarginvi{1em}
+\deflength\leftmargini{2.5em}
+\deflength\leftmarginii{2.2em}
+\deflength\leftmarginiii{1.87em}
+\deflength\leftmarginiv{1.7em}
+\deflength\leftmarginv{1em}
+\deflength\leftmarginvi{1em}
 
 \@beginparpenalty-\@lowpenalty
 \@endparpenalty-\@lowpenalty
 \@itempenalty-\@lowpenalty
 
-\setlength\labelsep{.5em}
-\setlength\labelwidth{\dimexpr\leftmargini-\labelsep\relax}
+\deflength\labelsep{.5em}
+\deflength\labelwidth{\leftmargini-\labelsep}
 
 \renewcommand*\theenumi{\@arabic\c@enumi}
 \renewcommand*\theenumii{\@alph\c@enumii}
@@ -148,14 +148,14 @@
 \newcommand*\labelitemiii{\morn{27}}
 \newcommand*\labelitemiv{\morn{0}}
 
-\newcommand*\bcatresume@enumitem@sep{\setlength\itemsep{\z@}}
+\newcommand*\bcatresume@enumitem@sep{\itemsep\z@skip}
 \appto\enumerate{\bcatresume@enumitem@sep}
 \appto\itemize{\bcatresume@enumitem@sep}
 
 % Set the default paragraph indent so that paragraphs line up with lists, and
 % widen the spacing between non-list paragraphs, lists, and list items slightly.
 \parindent\leftmargini
-\setlength\parskip{2\p@ \@plus \p@}
+\deflength\parskip{2\p@ \@plus \p@}
 \appto\@listi{\itemsep\glueexpr\itemsep+2\p@\relax}
 \let\@listI\@listi
 
@@ -179,12 +179,12 @@
 \newenvironment{topic}{%
   \list{}{%
     \let\makelabel\bcatresume@topic@label
-    \addtolength\parsep{-.5\parsep}%
-    \addtolength\topsep{\parsep}%
-    \addtolength\itemsep{\parsep}%
-    \setlength\leftmargin{\dimexpr.275\columnwidth+\leftmargini\relax}%
+    \deflength\parsep{.5\parsep}%
+    \deflength\topsep{\topsep+\parsep}%
+    \deflength\itemsep{\itemsep+\parsep}%
+    \deflength\leftmargin{.275\columnwidth+\leftmargini}%
     \labelsep\columnsep
-    \setlength\labelwidth{\dimexpr\leftmargin-\leftmargini-\labelsep\relax}%
+    \deflength\labelwidth{\leftmargin-\leftmargini-\labelsep}%
   }%
 }{\endlist}
 
@@ -232,12 +232,11 @@
   \let\\\bcatresume@key@nl
   \list{}{%
     \rightmargin\leftmargin
-    \setlength\labelwidth{\z@}%
-    \addtolength\baselineskip{\parsep}%
+    \labelwidth\z@
+    \deflength\baselineskip{\baselineskip+\parsep}%
   }%
-  \centering
-  \item\relax
-  \vspace{-\parsep}%
+  %
+  \centering\item\vspace{-\parsep}%
 }{\mbox{\bcatresume@key@right}\endlist}
 
 % Define macros to set title contents.
@@ -269,8 +268,8 @@
   }%
   % Print out the title itself.
   \begingroup
-    \setlength\parindent{\z@}%
-    \parskip\parindent
+    \parindent\z@
+    \parskip\z@skip
     \fancyfamily
     %
     \begin{minipage}{.3\linewidth}
