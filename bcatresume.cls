@@ -377,7 +377,7 @@
 }
 
 % Fix the LaTeX logo for Minion Pro.
-\bcatresume@patch\LaTeX{\kern-.36em}{\kern-.28em}  % Kern between L and A
+\bcatresume@patch\LaTeX{\kern-.36em}{\kern-.285em}  % Kern between L and A
 \bcatresume@patch\LaTeX{\kern-.15em}{\kern-.11em}  % Kern between A and T
 \bcatresume@patch\TeX{\kern-.1667em}{\kern-.15em}  % Kern between T and E
 \bcatresume@patch\TeX{\lower.5ex}{\lower.3667ex}   % Vertical shift of E
