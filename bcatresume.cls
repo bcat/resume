@@ -1,7 +1,7 @@
 % Copyright © 2010-11 Jonathan Rascher.
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{bcatresume}[2012/01/05 Jonathan Rascher's custom resume class]
+\ProvidesClass{bcatresume}[2012/01/08 Jonathan Rascher's custom resume class]
 
 % The body of the resume is set in Minion Pro, a rather small font. As such, we
 % choose to typeset the resume at 12pt instead of the default 10pt size. By
@@ -53,8 +53,8 @@
 
 % Record the Fertigo Pro family name so we can test the current font later on.
 \begingroup
-  \fancyfamily
-  \global\let\bcatresume@fancyfamily\f@family
+\fancyfamily
+\global\let\bcatresume@fancyfamily\f@family
 \endgroup
 
 % Enable custom headers and footers, and allow detection of the total number of
@@ -75,8 +75,9 @@
   \hspace{.5em}%
   {\normalsize\morn{13}}%
 }
-\renewcommand*\headrulewidth{\z@}
-\renewcommand*\footrulewidth{\z@}
+
+\renewcommand*\headrulewidth{0pt}
+\renewcommand*\footrulewidth{0pt}
 
 % Allow the use of colored text.
 \RequirePackage[dvipsnames]{xcolor}
@@ -99,68 +100,72 @@
 }
 
 % Make overfull boxes really ugly and noticeable.
-\deflength\overfullrule{5\p@}
+\deflength\overfullrule{5pt}
 
 % Restore some default settings from the ``article'' class.
-\deflength\lineskip{\p@}
-\normallineskip\lineskip
+\deflength\lineskip      {1pt}
+\deflength\normallineskip{\lineskip}
+
 \renewcommand*\baselinestretch{}
 
-\@lowpenalty51
-\@medpenalty151
-\@highpenalty301
+\@lowpenalty   51
+\@medpenalty  151
+\@highpenalty 301
 
 % Make the default enumerate and itemize environments actually useful.
 % (The standard document classes do this for us, but we don't include a
 % standard class, so...)
 %
 % These have been taken from the ``article'' class and tweaked a bit.
-\deflength\leftmargini{2.5em}
-\deflength\leftmarginii{2.2em}
+\deflength\leftmargini  {2.5em}
+\deflength\leftmarginii {2.2em}
 \deflength\leftmarginiii{1.87em}
-\deflength\leftmarginiv{1.7em}
-\deflength\leftmarginv{1em}
-\deflength\leftmarginvi{1em}
+\deflength\leftmarginiv {1.7em}
+\deflength\leftmarginv  {1em}
+\deflength\leftmarginvi {1em}
 
-\@beginparpenalty-\@lowpenalty
-\@endparpenalty-\@lowpenalty
-\@itempenalty-\@lowpenalty
+\@beginparpenalty -\@lowpenalty
+\@endparpenalty   -\@lowpenalty
+\@itempenalty     -\@lowpenalty
 
-\deflength\labelsep{.5em}
-\deflength\labelwidth{\leftmargini-\labelsep}
+\deflength\labelsep  {.5em}
+\deflength\labelwidth{\leftmargini - \labelsep}
 
-\renewcommand*\theenumi{\@arabic\c@enumi}
-\renewcommand*\theenumii{\@alph\c@enumii}
+\renewcommand*\theenumi  {\@arabic\c@enumi}
+\renewcommand*\theenumii {\@alph\c@enumii}
 \renewcommand*\theenumiii{\@roman\c@enumiii}
-\renewcommand*\theenumiv{\@Alph\c@enumiv}
+\renewcommand*\theenumiv {\@Alph\c@enumiv}
 
-\newcommand*\labelenumi{\theenumi.}
-\newcommand*\labelenumii{(\theenumii)}
+\newcommand*\labelenumi  {\theenumi.}
+\newcommand*\labelenumii {(\theenumii)}
 \newcommand*\labelenumiii{\theenumiii.}
-\newcommand*\labelenumiv{\theenumiv.}
+\newcommand*\labelenumiv {\theenumiv.}
 
-\renewcommand*\p@enumii{\theenumi}
+\renewcommand*\p@enumii {\theenumi}
 \renewcommand*\p@enumiii{\theenumi(\theenumii)}
-\renewcommand*\p@enumiv{\p@enumiii\theenumiii}
+\renewcommand*\p@enumiv {\p@enumiii\theenumiii}
 
-\newcommand*\labelitemi{\morn{29}}
-\newcommand*\labelitemii{\morn{26}}
+\newcommand*\labelitemi  {\morn{29}}
+\newcommand*\labelitemii {\morn{26}}
 \newcommand*\labelitemiii{\morn{27}}
-\newcommand*\labelitemiv{\morn{0}}
+\newcommand*\labelitemiv {\morn{0}}
 
-\newcommand*\bcatresume@enumitem@sep{\itemsep\z@skip}
+\newcommand*\bcatresume@enumitem@sep{\deflength\itemsep{0pt}}
+
 \appto\enumerate{\bcatresume@enumitem@sep}
-\appto\itemize{\bcatresume@enumitem@sep}
+\appto\itemize  {\bcatresume@enumitem@sep}
 
 % Set the default paragraph indent so that paragraphs line up with lists, and
-% widen the spacing between non-list paragraphs, lists, and list items slightly.
-\parindent\leftmargini
-\deflength\parskip{2\p@ \@plus \p@}
-\appto\@listi{\itemsep\glueexpr\itemsep+2\p@\relax}
-\let\@listI\@listi
+% widen the spacing between paragraphs, lists, and list items slightly.
+\deflength\parindent{\leftmargini}
+\deflength\parskip  {2pt plus 1pt}
+\deflength\parsep   {5.5pt plus 2.5pt minus 1pt}
+
+\appto\@listi{\itemsep \glueexpr\itemsep + 2pt\relax}
+\let  \@listI \@listi
 
 % Define formatting macros for topic lists.
-\newcommand*\bcatresume@topic@labelfmt{\scshape\small\raise.125ex}
+\newcommand*\bcatresume@topic@labelfmt{\scshape\small\raise .125ex}
 
 % Set up a list environment for rendering resume topics. Each list item
 % indicates a new topic, which may be given a descriptive name. Paragraphs
@@ -179,18 +184,19 @@
 \newenvironment{topic}{%
   \list{}{%
     \let\makelabel\bcatresume@topic@label
-    \deflength\parsep{.5\parsep}%
-    \deflength\topsep{\topsep+\parsep}%
-    \deflength\itemsep{\itemsep+\parsep}%
-    \deflength\leftmargin{.275\columnwidth+\leftmargini}%
-    \labelsep\columnsep
-    \deflength\labelwidth{\leftmargin-\leftmargini-\labelsep}%
+    %
+    \deflength\parsep    {.5\parsep}%
+    \deflength\topsep    {\topsep + \parsep}%
+    \deflength\itemsep   {\itemsep + \parsep}%
+    \deflength\leftmargin{.275\columnwidth + \leftmargini}%
+    \deflength\labelsep  {\columnsep}%
+    \deflength\labelwidth{\leftmargin - \leftmargini - \labelsep}%
   }%
 }{\endlist}
 
 % Define macros to typeset ornaments in keyword lists.
-\newcommand*\bcatresume@key@left{\morn{26}\hspace{.9em}}
-\newcommand*\bcatresume@key@mid{\hspace{.9em}\morn{29}\hspace{.9em}}
+\newcommand*\bcatresume@key@left {\morn{26}\hspace{.9em}}
+\newcommand*\bcatresume@key@mid  {\hspace{.9em}\morn{29}\hspace{.9em}}
 \newcommand*\bcatresume@key@right{\hspace{.9em}\morn{26}}
 
 % Set up an environment that typesets a list of keywords, separated by
@@ -231,26 +237,28 @@
   \let\bcatresume@key@oldnl\\
   \let\\\bcatresume@key@nl
   \list{}{%
-    \rightmargin\leftmargin
-    \labelwidth\z@
-    \deflength\baselineskip{\baselineskip+\parsep}%
+    \deflength\rightmargin {\leftmargin}%
+    \deflength\labelwidth  {0pt}%
+    \deflength\baselineskip{\baselineskip + \parsep}%
   }%
   %
-  \centering\item\vspace{-\parsep}%
+  \centering
+  %
+  \item\vspace{-\parsep}%
 }{\mbox{\bcatresume@key@right}\endlist}
 
 % Define macros to set title contents.
-\newrobustcmd*\name{\gdef\bcatresume@name}
-\newrobustcmd*\email{\gdef\bcatresume@email}
-\newrobustcmd*\phone{\gdef\bcatresume@phone}
-\newrobustcmd*\addrone{\gdef\bcatresume@addrone}
-\newrobustcmd*\addrtwo{\gdef\bcatresume@addrtwo}
+\newrobustcmd*\name    {\gdef\bcatresume@name}
+\newrobustcmd*\email   {\gdef\bcatresume@email}
+\newrobustcmd*\phone   {\gdef\bcatresume@phone}
+\newrobustcmd*\addrone {\gdef\bcatresume@addrone}
+\newrobustcmd*\addrtwo {\gdef\bcatresume@addrtwo}
 \newrobustcmd*\addrlast{\gdef\bcatresume@addrlast}
 
 % Define formatting commands for the left, middle, and right portions of the
 % resume title, respectively.
 \newcommand*\bcatresume@leftfmt{\small}
-\sodef\bcatresume@midfmt{\Large}{.3\p@}{\z@}{\z@}
+\sodef\bcatresume@midfmt{\Large}{.3pt}{0pt}{0pt}
 \newcommand*\bcatresume@rightfmt{\small}
 
 % Define a macro that typesets the resume's title.
@@ -263,37 +271,38 @@
   }{}%
   % Set up PDF title and authorship information appropriately.
   \hypersetup{
-    pdftitle=\bcatresume@name's Resume,
+    pdftitle =\bcatresume@name's Resume,
     pdfauthor=\bcatresume@name,
   }%
   % Print out the title itself.
   \begingroup
-    \parindent\z@
-    \parskip\z@skip
-    \fancyfamily
-    %
-    \begin{minipage}{.3\linewidth}
-      \raggedright
-      \begin{tabular}{@{\bcatresume@leftfmt}l}
-        \ifundef\bcatresume@email{}{%
-          <\href{mailto:\bcatresume@email}{\bcatresume@email}> \\
-        }%
-        \ifundef\bcatresume@phone{}{\bcatresume@phone \\}
-      \end{tabular}
-    \end{minipage}%
-    %
-    \begin{minipage}{.4\linewidth}
-      \centering\bcatresume@midfmt\bcatresume@name
-    \end{minipage}%
-    %
-    \begin{minipage}{.3\linewidth}
-      \raggedleft
-      \begin{tabular}{@{\bcatresume@rightfmt}l}
-        \ifundef\bcatresume@addrone{}{\bcatresume@addrone \\}%
-        \ifundef\bcatresume@addrtwo{}{\bcatresume@addrtwo \\}%
-        \ifundef\bcatresume@addrlast{}{\bcatresume@addrlast \\}%
-      \end{tabular}
-    \end{minipage}%
+  \deflength\parindent{0pt}
+  \deflength\parskip  {0pt}
+  %
+  \fancyfamily
+  %
+  \begin{minipage}{.3\linewidth}
+    \raggedright
+    \begin{tabular}{@{\bcatresume@leftfmt}l}
+      \ifundef\bcatresume@email{}{%
+        <\href{mailto:\bcatresume@email}{\bcatresume@email}> \\
+      }%
+      \ifundef\bcatresume@phone{}{\bcatresume@phone \\}
+    \end{tabular}
+  \end{minipage}%
+  %
+  \begin{minipage}{.4\linewidth}
+    \centering\bcatresume@midfmt\bcatresume@name
+  \end{minipage}%
+  %
+  \begin{minipage}{.3\linewidth}
+    \raggedleft
+    \begin{tabular}{@{\bcatresume@rightfmt}l}
+      \ifundef\bcatresume@addrone{}{\bcatresume@addrone \\}%
+      \ifundef\bcatresume@addrtwo{}{\bcatresume@addrtwo \\}%
+      \ifundef\bcatresume@addrlast{}{\bcatresume@addrlast \\}%
+    \end{tabular}
+  \end{minipage}%
   \endgroup
   %
   \bigskip\bigskip\bigskip
@@ -304,81 +313,103 @@
 % Define sectioning commands. Resumes should be short and simple, so we don't
 % bother with more than a single sectioning level.
 \setcounter{secnumdepth}{0}
-\setcounter{tocdepth}{1}
+\setcounter{tocdepth}   {1}
 
 \newcounter{section}
 \renewcommand*\thesection{\@arabic\c@section}
 
 \newcommand\section{%
-  \@startsection{section}{1}{\z@}{-5.5\smallskipamount}{3\smallskipamount}{%
+  \@startsection{section}{1}{0pt}{-5.5\smallskipamount}{3\smallskipamount}{%
     \fancyfamily
   }%
-}
-
-% Define a command to format school/work experience lists.
-\newcommand*\job[2]{#1\hspace{.36em}\morn{22}\hspace{.315em}\textit{#2}}
-
-% Define a macro that typesets a hyphen while prohibiting a line break at that
-% point. The empty horizontal space is necessary to permit normal hyphenation
-% in the word following the dash.
-\newcommand*\nbds{\texorpdfstring{\nobreakdashes-\hspace{\z@}}{-}}
-
-% Typeset Fertigo Pro's ampersand in italics for additional prettiness. (Don't
-% give the same treatment to Minion Pro, however. Minion's italic ampersand
-% looks too ornate in roman text.)
-\newcommand*\amp{%
-  \texorpdfstring{%
-    \begingroup
-      \ifdefstrequal{\f@family}{\bcatresume@fancyfamily}{\itshape}{}%
-      \&%
-    \endgroup
-  }{\&}%
-}
-
-% Lower the slash and kern it more tightly to improve the appearance of
-% in-text fractions with old-style numerals.
-\newcommand*\fracslash{%
-  \texorpdfstring{\kern.01em\raisebox{-.23ex}{/}\kern-.05em}{/}%
-}
-
-% Tweak the kerning of unusual programming language names.
-%
-% XXX: Use lining hash sign instead of ``\raisebox''?
-\newcommand*\CPP{%
-  \texorpdfstring{%
-    C\nolinebreak\kern-.02em%
-    \raisebox{.17ex}{+\nolinebreak\kern-.1em+}%
-  }{C++}%
-}
-\newcommand*\CS{%
-  \texorpdfstring{C\nolinebreak\kern.032em\raisebox{.23ex}{\#}}{C\#}%
-}
-\newcommand*\FS{%
-  \texorpdfstring{F\nolinebreak\kern.028em\raisebox{.22ex}{\#}}{F\#}%
 }
 
 % Define a wrapper for ``\patchcmd'' that properly handles macros defined using
 % ``\DeclareRobustCommand'' and that automatically throws an error if patching
 % fails. See here for inspiration: <http://tex.stackexchange.com/q/24245/1301>.
 \newrobustcmd*\bcatresume@patch[3]{%
-  \ifdefltxprotect#1{%
-    \let\bcatresume@patch@space\space
-  }{%
-    \let\bcatresume@patch@space\@empty
+  \begingroup
+  \ifdefltxprotect{#1}{}{\let\space\empty}%
+  \edef\x##1##2##3{%
+    \endgroup
+    \noexpand\patchcmd{%
+      \expandonce{\csname\expandafter\@gobble\string#1\space\endcsname}%
+    }{##1}{##2}{}{##3}%
   }%
-  \edef\bcatresume@patch@cmd{%
-    \expandafter\noexpand\csname
-      \expandafter\@gobble\string#1\bcatresume@patch@space
-    \endcsname
-  }%
-  \expandafter\patchcmd\bcatresume@patch@cmd{#2}{#3}{}{%
-    \ClassError{bcatresume}{Couldn't patch ``\protect#1'' command}{}%
+  \x{#2}{#3}{\ClassError{bcatresume}{Couldn't patch ``\protect#1'' command}{}}%
+}
+
+% Define a helpful wrapper around ``\texorpdfstring''.
+\newcommand\bcatresume@newstrcmd[3]{\newcommand*{#1}{\texorpdfstring{#3}{#2}}}
+
+% Define a command to format school/work experience lists.
+\newcommand*\job[2]{%
+  #1%
+  \hspace{.36em}%
+  \morn{22}%
+  \hspace{.315em}%
+  \textit{#2}%
+}
+
+% Define a macro that typesets a hyphen while prohibiting a line break at that
+% point. The empty horizontal space is necessary to permit normal hyphenation
+% in the word following the dash.
+\bcatresume@newstrcmd\nbds{-}{%
+  \nobreakdashes
+  -%
+  \hspace{0pt}%
+}
+
+% Typeset Fertigo Pro's ampersand in italics for additional prettiness. (Don't
+% give the same treatment to Minion Pro, however. Minion's italic ampersand
+% looks too ornate in roman text.)
+\bcatresume@newstrcmd\amp{\&}{%
+  \begingroup
+  \ifdefstrequal\f@family\bcatresume@fancyfamily{\itshape}{}%
+  \&%
+  \endgroup
+}
+
+% Lower the slash and kern it more tightly to improve the appearance of
+% in-text fractions with old-style numerals.
+\bcatresume@newstrcmd\fracslash{/}{%
+  \kern .01em
+  \raisebox{-.23ex}{/}%
+  \kern -.05em
+}
+
+% Tweak the kerning of unusual programming language names.
+%
+% XXX: Use lining hash sign instead of ``\raisebox''?
+\bcatresume@newstrcmd\CPP{C++}{%
+  C%
+  \nolinebreak
+  \kern -.02em
+  \raisebox{.17ex}{%
+    +%
+    \nolinebreak
+    \kern -.1em
+    +%
   }%
 }
 
+\bcatresume@newstrcmd\CS{C\#}{%
+  C%
+  \nolinebreak
+  \kern .032em
+  \raisebox{.23ex}{\#}%
+}
+
+\bcatresume@newstrcmd\FS{F\#}{%
+  F%
+  \nolinebreak
+  \kern .028em
+  \raisebox{.22ex}{\#}%
+}
+
 % Fix the LaTeX logo for Minion Pro.
-\bcatresume@patch\LaTeX{\kern-.36em}{\kern-.285em}  % Kern between L and A
-\bcatresume@patch\LaTeX{\kern-.15em}{\kern-.11em}  % Kern between A and T
-\bcatresume@patch\TeX{\kern-.1667em}{\kern-.15em}  % Kern between T and E
-\bcatresume@patch\TeX{\lower.5ex}{\lower.3667ex}   % Vertical shift of E
-\bcatresume@patch\TeX{\kern-.125em}{\kern-.09em}   % Kern between E and X
+\bcatresume@patch\LaTeX{\kern-.36em}  {\kern  -.285em}  % Kern between L and A
+\bcatresume@patch\LaTeX{\kern-.15em}  {\kern  -.11em}   % Kern between A and T
+\bcatresume@patch\TeX  {\kern-.1667em}{\kern  -.15em}   % Kern between T and E
+\bcatresume@patch\TeX  {\lower.5ex}   {\lower  .3667ex} % Vertical shift of E
+\bcatresume@patch\TeX  {\kern-.125em} {\kern  -.09em}   % Kern between E and X
