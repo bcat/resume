@@ -1,4 +1,4 @@
-% Copyright © 2010-11 Jonathan Rascher.
+% Copyright © 2010-12 Jonathan Rascher.
 
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{bcatresume}[2012/01/08 Jonathan Rascher's custom resume class]
