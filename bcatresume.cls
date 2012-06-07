@@ -1,7 +1,7 @@
 % Copyright © 2010-12 Jonathan Rascher.
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{bcatresume}[2012/01/08 Jonathan Rascher's custom resume class]
+\ProvidesClass{bcatresume}[2012/03/23 Jonathan Rascher's custom resume class]
 
 % The body of the resume is set in Minion Pro, a rather small font. As such, we
 % choose to typeset the resume at 12pt instead of the default 10pt size. By
@@ -159,10 +159,13 @@
 % widen the spacing between paragraphs, lists, and list items slightly.
 \deflength\parindent{\leftmargini}
 \deflength\parskip  {2pt plus 1pt}
-\deflength\parsep   {5.5pt plus 2.5pt minus 1pt}
 
-\appto\@listi{\itemsep \glueexpr\itemsep + 2pt\relax}
-\let  \@listI \@listi
+\appto\@listi{%
+  \parsep  \glueexpr\parsep + 0.5pt\relax
+  \itemsep \glueexpr\itemsep + 2pt\relax
+}
+
+\let\@listI\@listi
 
 % Define formatting macros for topic lists.
 \newcommand*\bcatresume@topic@labelfmt{\scshape\small\raise .125ex}
